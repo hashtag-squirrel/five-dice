@@ -25,7 +25,6 @@
     - [Colors](#colors)
     - [Fonts](#fonts)
     - [Images](#images)
-    - [Consistency](#consistency)
     </details></li>
     </ul>
 </details>
@@ -106,11 +105,13 @@ Basic functionality needed:
 
 #### Colors
 
+Preliminary color palette from: http://colormind.io/
+
 #### Fonts
 
-#### Images
+Preliminary Fonts: Google Fonts: Robot and Amatic SC
 
-#### Consistency
+#### Images
 
 ## Features 
 

@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Roboto:wght@100&display=swap');
+
+/* General styling for the whole page */
+
+/* Defining colors for color scheme */
+:root {
+    --primary-color: #35547A;
+    --secondary-color: #6E7A95;
+    --tertiary-color: #909494;
+    --light-color: #FBF9F9;
+    --highlight-color: #8DD4EA;
+}
+
+/* Other general styles */
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body {
+    background-color: var(--light-color);
+    font-family: 'Roboto', sans-serif;
+    /* color: var(--primary-color); */
+    font-size: 150%;
+    text-align: center;
+}
+
+/* Button styles */
+.btn {
+    border: 1px solid;
+}
+
+.btn:hover {
+    background-color: var(--highlight-color);
+}
+
+/* Header */
+#logo {
+    
+    font-size: 500%;
+    margin: 30px 0 0 30px;
+}
+
+/* Main section */
+main {
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Game Area section */
+
+#game-area {
+    border: 5px solid;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Scoresheet section */
+
+/* table {
+    
+} */
+
+table, td, th {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: var(--tertiary-color);
+}
+
+tr:hover {
+    background-color: var(--highlight-color);
+}
+
+th {
+    background-color: var(--light-color);
+}
