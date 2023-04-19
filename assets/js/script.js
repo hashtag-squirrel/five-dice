@@ -1,4 +1,9 @@
+// Declaring constants
+
 const rollBtn = document.getElementById('roll-button');
+
+const tableBody = document.getElementsByTagName('tbody')[0];
+
 const diceOne = document.getElementById('dice').children[0];
 const diceTwo = document.getElementById('dice').children[1];
 const diceThree = document.getElementById('dice').children[2];
@@ -19,11 +24,11 @@ const straight = document.getElementById('straight').children[1];
 const chance = document.getElementById('chance').children[1];
 
 let diceArray = [0, 0, 0, 0, 0];
+// let fieldId;
 
+// // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
     runGame();
-    rollBtn.addEventListener('click', function() {rollDice()});
-
 })
 
 /** 
@@ -31,13 +36,15 @@ document.addEventListener('DOMContentLoaded', function() {
 */ 
 function runGame() {
     console.log("Game is running");
+    rollBtn.addEventListener('click', function() {rollDice()});
+    tableBody.addEventListener('click', function(event) {endTurn(event)});
 }
 
 /**
 * Calculates the score for a picked field and returns the score
 */ 
-function calculateFieldScore() {
-    console.log("Calculating Field Score");
+function calculateFieldScore(fieldId) {
+    console.log(`Calculating Field Score for ${fieldId}`);
 }
 
 /** 
@@ -78,7 +85,14 @@ function rollDice() {
 * Lets the player pick a field for the turn and ends the turn
 */
 function endTurn() {
-    console.log("Ending Turn");
+    let scoresheetField = this.event.srcElement;
+    if (scoresheetField.classList.length === 0) {
+        scoresheetField.nextElementSibling.textContent = calculateFieldScore(scoresheetField.nextElementSibling.parentElement.id);
+    } else if (scoresheetField.classList.length === 1) {
+        scoresheetField.textContent = calculateFieldScore(scoresheetField.parentElement.id);
+    } else {
+        throw "You cannot enter your score here"
+    }
 }
 
 /**
