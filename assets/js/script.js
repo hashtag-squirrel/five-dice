@@ -24,7 +24,8 @@ const straight = document.getElementById('straight').children[1];
 const chance = document.getElementById('chance').children[1];
 
 let diceArray = [0, 0, 0, 0, 0];
-// let fieldId;
+let totalScore = 0;
+let totalScoreDisplay = document.getElementById('score');
 
 // // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
@@ -44,14 +45,83 @@ function runGame() {
 * Calculates the score for a picked field and returns the score
 */ 
 function calculateFieldScore(fieldId) {
-    console.log(`Calculating Field Score for ${fieldId}`);
+    let score = 0;
+    switch (fieldId) {
+        case 'ones':
+            for (i = 0; i < diceArray.length; i++) {
+                if (diceArray[i] === 1) {
+                    score = score + diceArray[i];
+                }
+            }
+            break;
+        case 'twos':
+            for (i = 0; i < diceArray.length; i++) {
+                if (diceArray[i] === 2) {
+                    score = score + diceArray[i];
+                }
+            }
+            break;
+        case 'threes':
+            for (i = 0; i < diceArray.length; i++) {
+                if (diceArray[i] === 3) {
+                    score = score + diceArray[i];
+                }
+            }
+            break;
+        case 'fours':
+            for (i = 0; i < diceArray.length; i++) {
+                if (diceArray[i] === 4) {
+                    score = score + diceArray[i];
+                }
+            }
+            break;
+        case 'fives':
+            for (i = 0; i < diceArray.length; i++) {
+                if (diceArray[i] === 5) {
+                    score = score + diceArray[i];
+                }
+            }
+            break;
+        case 'sixes':
+            for (i = 0; i < diceArray.length; i++) {
+                if (diceArray[i] === 6) {
+                    score = score + diceArray[i];
+                }
+            }
+            break;
+        case 'three-of-a-kind':
+            break;
+        case 'four-of-a-kind':
+            break;
+        case 'five-of-a-kind':
+            score = 50
+            break;
+        case 'full-house':
+            score = 25;
+            break;
+        case 'small-straight':
+            score = 30;
+            break;
+        case 'straight':
+            score = 40
+            break;
+        case 'chance':
+            for (i = 0; i < diceArray.length; i++) {
+                score = score + diceArray[i];
+            }
+            break;
+    }
+    calculateTotalScore(score);
+    return score;
 }
 
 /** 
 * Calculates the total score whenever a field is filled
 */
-function calculateTotalScore() {
-    console.log("Calculating Total Score");
+function calculateTotalScore(fieldScore) {
+    totalScore = totalScore + fieldScore;
+    totalScoreDisplay.textContent = totalScore;
+    return totalScore;
 }
 
 /**
@@ -91,7 +161,7 @@ function endTurn() {
     } else if (scoresheetField.classList.length === 1) {
         scoresheetField.textContent = calculateFieldScore(scoresheetField.parentElement.id);
     } else {
-        throw "You cannot enter your score here"
+        throw "You cannot enter your score here";
     }
 }
 
