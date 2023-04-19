@@ -59,6 +59,10 @@ main {
     gap: 20px;
 }
 
+#turns {
+    color: var(--light-color);
+}
+
 #dice img {
     width: 40px;
     height: 40px;
