@@ -150,10 +150,7 @@ function calculateFieldScore(fieldId, field) {
                 break;
             case 'five-of-a-kind':
                 console.log(diceArray);
-                if (diceArray[0] === diceArray[1] &&
-                    diceArray[0] === diceArray[2] &&
-                    diceArray[0] === diceArray[3] &&
-                    diceArray[0] === diceArray[4]) 
+                if (Object.values(findDuplicates()).includes(5)) 
                 {
                     score = 50;
                 } else {
@@ -161,7 +158,12 @@ function calculateFieldScore(fieldId, field) {
                 }
                 break;
             case 'full-house':
-                score = 25;
+                if (Object.values(findDuplicates()).includes(3) && Object.values(findDuplicates()).includes(2) ||
+                    Object.values(findDuplicates()).includes(5)) {
+                    score = 25;
+                } else {
+                    score = 0;
+                }
                 break;
             case 'small-straight':
                 if ((diceArray.includes(1) && diceArray.includes(2) && diceArray.includes(3) && diceArray.includes(4)) ||
