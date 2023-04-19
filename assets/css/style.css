@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Roboto:wght@100&display=swap');
+
+/* General styling for the whole page */
+
+/* Defining colors for color scheme */
+:root {
+    --primary-color: #35547A;
+    --secondary-color: #6E7A95;
+    --tertiary-color: #909494;
+    --light-color: #FBF9F9;
+    --highlight-color: #8DD4EA;
+}
+
+/* Other general styles */
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body {
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 150%;
+    text-align: center;
+    background-color: var(--primary-color);
+}
+
+/* Header */
+header {
+    margin: 15px;
+}
+
+#logo img {
+    width: 300px;
+}
+
+/* Main section */
+main {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--light-color);
+}
+
+/* Game Area section */
+
+#game-area {
+    border: 5px solid;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    gap: 20px;
+}
+
+#dice img {
+    width: 40px;
+    height: 40px;
+    border: 3px solid transparent;
+    border-radius: 10px;
+}
+
+#dice img:hover {
+    border: 3px solid var(--highlight-color);
+    border-radius: 10px;
+}
+
+#dice img.locked {
+    border: 3px solid var(--highlight-color);
+    border-radius: 10px;
+}
+
+/* Scoresheet section */
+#scoresheet-area {
+    width: 300px;
+    margin: 30px;
+}
+
+table {
+    width: 100%;
+    text-align: left;
+}
+
+table, td, th {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+th {
+    background-color: var(--light-color);
+    font-weight: bold;
+}
+
+/* tr:nth-child(odd) {
+    background-color: var(--tertiary-color);
+}
+
+tr:nth-child(even) {
+    background-color: var(--light-color);
+} */
+
+table .scores {
+    text-align: center;
+    width: 50px;
+}
+
+tr:hover {
+    background-color: var(--highlight-color);
+}
+
+#total-score {
+    margin: 15px;
+}
+
+/* Footer section */
+
+footer {
+    margin: 15px;
+}
+
+/* Button styles */
+.btn {
+    font-family: 'Amatic SC', sans-serif;
+    border: 1px solid;
+    border-radius: 10px;
+    font-size: 115%;
+    padding: 0 10px 0 10px;
+}
+
+.btn:hover {
+    background-color: var(--highlight-color);
+}

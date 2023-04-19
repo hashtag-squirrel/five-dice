@@ -10,77 +10,87 @@
 <body>
     <!-- Header -->
     <header>
-        <a href="index.html" id="logo">5DICE</a>
+        <a href="index.html" id="logo"><img src="assets/images/dice-logo.png" alt="Five dice spelling out the name of the game"></a>
     </header>
 
     <!-- Main -->
     <main>
         <!-- Game Section for the dice -->
         <section id="game-area">
-            <div id="dice"></div>
-            <div>
-                <button id="roll" class="btn">Roll</button>
+            <div id="dice">
+                <img src="assets/images/dice-6.png" alt="A dice showing the number six">
+                <img src="assets/images/dice-6.png" alt="A dice showing the number six">
+                <img src="assets/images/dice-6.png" alt="A dice showing the number six">
+                <img src="assets/images/dice-6.png" alt="A dice showing the number six">
+                <img src="assets/images/dice-6.png" alt="A dice showing the number six">
+            </div>
+            <div id="roll-area">
+                <button id="roll-button" class="btn">Roll Dice</button>
             </div>
         </section>
 
         <!-- Scoresheet Section -->
         <section id="scoresheet-area">
             <table>
-                <tr>
-                    <th id="player-name">Player</th>
-                </tr>
-                <tr id="ones">
-                    <td>Ones</td>
-                    <td>0</td>
-                </tr>
-                <tr id="twos">
-                    <td>Twos</td>
-                    <td>0</td>
-                </tr>
-                <tr id="threes">
-                    <td>Threes</td>
-                    <td>0</td>
-                </tr>
-                <tr id="fours">
-                    <td>Fours</td>
-                    <td>0</td>
-                </tr>
-                <tr id="fives">
-                    <td>Fives</td>
-                    <td>0</td>
-                </tr>
-                <tr id="sixes">
-                    <td>Sixes</td>
-                    <td>0</td>
-                </tr>
-                <tr id="three-of-a-kind">
-                    <td>Three of a kind</td>
-                    <td>0</td>
-                </tr>
-                <tr id="four-of-a-kind">
-                    <td>Four of a kind</td>
-                    <td>0</td>
-                </tr>
-                <tr id="five-of-a-kind">
-                    <td>Five of a kind</td>
-                    <td>0</td>
-                </tr>
-                <tr id="six-of-a-kind">
-                    <td>Full House</td>
-                    <td>0</td>
-                </tr>
-                <tr id="small-straight">
-                    <td>Small Straight</td>
-                    <td>0</td>
-                </tr>
-                <tr id="straight">
-                    <td>Straight</td>
-                    <td>0</td>
-                </tr>
-                <tr id="chance">
-                    <td>Chance</td>
-                    <td>0</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th id="player-name" colspan="2">Player</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="ones">
+                        <td>Ones</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="twos">
+                        <td>Twos</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="threes">
+                        <td>Threes</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="fours">
+                        <td>Fours</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="fives">
+                        <td>Fives</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="sixes">
+                        <td>Sixes</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="three-of-a-kind">
+                        <td>Three of a kind</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="four-of-a-kind">
+                        <td>Four of a kind</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="five-of-a-kind">
+                        <td>Five of a kind</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="six-of-a-kind">
+                        <td>Full House</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="small-straight">
+                        <td>Small Straight</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="straight">
+                        <td>Straight</td>
+                        <td class="scores"></td>
+                    </tr>
+                    <tr id="chance">
+                        <td>Chance</td>
+                        <td class="scores"></td>
+                    </tr>
+                </tbody>
             </table>
             <div id="total-score">Score: <span id="score">0</span></div>
         </section> 
