@@ -1,10 +1,16 @@
 const rollBtn = document.getElementById('roll-button');
+const diceOne = document.getElementById('dice').children[0];
+const diceTwo = document.getElementById('dice').children[1];
+const diceThree = document.getElementById('dice').children[2];
+const diceFour = document.getElementById('dice').children[3];
+const diceFive = document.getElementById('dice').children[4];
 
 let diceArray = [0, 0, 0, 0, 0];
 
 document.addEventListener('DOMContentLoaded', function() {
     runGame();
     rollBtn.addEventListener('click', function() {rollDice()});
+
 })
 
 /** 
@@ -49,6 +55,7 @@ function unlockDice() {
 function rollDice() {
     for (let dice in diceArray) {
         diceArray[dice] = Math.floor(Math.random() * 6) + 1;
+        document.getElementById('dice').children[dice].src = `assets/images/dice-${diceArray[dice]}.png` ;
     }
     console.log(diceArray);
     return diceArray;
