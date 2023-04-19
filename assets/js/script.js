@@ -44,75 +44,158 @@ function runGame() {
 /**
 * Calculates the score for a picked field and returns the score
 */ 
-function calculateFieldScore(fieldId) {
+function calculateFieldScore(fieldId, field) {
     let score = 0;
-    switch (fieldId) {
-        case 'ones':
-            for (i = 0; i < diceArray.length; i++) {
-                if (diceArray[i] === 1) {
+    if (field.textContent === '') {
+        switch (fieldId) {
+            case 'ones':
+                for (i = 0; i < diceArray.length; i++) {
+                    if (diceArray[i] === 1) {
+                        score = score + diceArray[i];
+                    }
+                }
+                break;
+            case 'twos':
+                for (i = 0; i < diceArray.length; i++) {
+                    if (diceArray[i] === 2) {
+                        score = score + diceArray[i];
+                    }
+                }
+                break;
+            case 'threes':
+                for (i = 0; i < diceArray.length; i++) {
+                    if (diceArray[i] === 3) {
+                        score = score + diceArray[i];
+                    }
+                }
+                break;
+            case 'fours':
+                for (i = 0; i < diceArray.length; i++) {
+                    if (diceArray[i] === 4) {
+                        score = score + diceArray[i];
+                    }
+                }
+                break;
+            case 'fives':
+                for (i = 0; i < diceArray.length; i++) {
+                    if (diceArray[i] === 5) {
+                        score = score + diceArray[i];
+                    }
+                }
+                break;
+            case 'sixes':
+                for (i = 0; i < diceArray.length; i++) {
+                    if (diceArray[i] === 6) {
+                        score = score + diceArray[i];
+                    }
+                }
+                break;
+            case 'three-of-a-kind':
+                if (findDuplicates().onesInArray >= 3) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else if (findDuplicates().twosInArray >= 3) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else if (findDuplicates().threesInArray >= 3) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else if (findDuplicates().foursInArray >= 3) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else if (findDuplicates().fivesInArray >= 3) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else if (findDuplicates.sixesInArray >= 3) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else {
+                    score = 0;
+                }
+                break;
+            case 'four-of-a-kind':
+                if (findDuplicates().onesInArray >= 4) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else if (findDuplicates().twosInArray >= 4) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else if (findDuplicates().threesInArray >= 4) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else if (findDuplicates().foursInArray >= 4) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else if (findDuplicates().fivesInArray >= 4) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else if (findDuplicates.sixesInArray >= 4) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i];
+                    }
+                } else {
+                    score = 0;
+                }
+                break;
+            case 'five-of-a-kind':
+                console.log(diceArray);
+                if (diceArray[0] === diceArray[1] &&
+                    diceArray[0] === diceArray[2] &&
+                    diceArray[0] === diceArray[3] &&
+                    diceArray[0] === diceArray[4]) 
+                {
+                    score = 50;
+                } else {
+                    score = 0;
+                }
+                break;
+            case 'full-house':
+                score = 25;
+                break;
+            case 'small-straight':
+                if ((diceArray.includes(1) && diceArray.includes(2) && diceArray.includes(3) && diceArray.includes(4)) ||
+                    (diceArray.includes(2) && diceArray.includes(3) && diceArray.includes(4) && diceArray.includes(5)) ||
+                    (diceArray.includes(3) && diceArray.includes(4) && diceArray.includes(5) && diceArray.includes(6))) 
+                {
+                    score = 30;
+                } else {
+                    score = 0;
+                }
+                break;
+            case 'straight':
+                if ((diceArray.includes(1) && diceArray.includes(2) && diceArray.includes(3) && diceArray.includes(4) && diceArray.includes(5)) ||
+                (diceArray.includes(2) && diceArray.includes(3) && diceArray.includes(4) && diceArray.includes(5) && diceArray.includes(6)))
+                {
+                    score = 40;
+                } else {
+                    score = 0;
+                }
+                break;
+            case 'chance':
+                for (i = 0; i < diceArray.length; i++) {
                     score = score + diceArray[i];
                 }
-            }
-            break;
-        case 'twos':
-            for (i = 0; i < diceArray.length; i++) {
-                if (diceArray[i] === 2) {
-                    score = score + diceArray[i];
-                }
-            }
-            break;
-        case 'threes':
-            for (i = 0; i < diceArray.length; i++) {
-                if (diceArray[i] === 3) {
-                    score = score + diceArray[i];
-                }
-            }
-            break;
-        case 'fours':
-            for (i = 0; i < diceArray.length; i++) {
-                if (diceArray[i] === 4) {
-                    score = score + diceArray[i];
-                }
-            }
-            break;
-        case 'fives':
-            for (i = 0; i < diceArray.length; i++) {
-                if (diceArray[i] === 5) {
-                    score = score + diceArray[i];
-                }
-            }
-            break;
-        case 'sixes':
-            for (i = 0; i < diceArray.length; i++) {
-                if (diceArray[i] === 6) {
-                    score = score + diceArray[i];
-                }
-            }
-            break;
-        case 'three-of-a-kind':
-            break;
-        case 'four-of-a-kind':
-            break;
-        case 'five-of-a-kind':
-            score = 50
-            break;
-        case 'full-house':
-            score = 25;
-            break;
-        case 'small-straight':
-            score = 30;
-            break;
-        case 'straight':
-            score = 40
-            break;
-        case 'chance':
-            for (i = 0; i < diceArray.length; i++) {
-                score = score + diceArray[i];
-            }
-            break;
+                break;
+        }
+        calculateTotalScore(score);
+        return score;
+    } else {
+        oldScore = field.textContent;
+        score = field.textContent;
+        
     }
-    calculateTotalScore(score);
-    return score;
+    
 }
 
 /** 
@@ -147,7 +230,6 @@ function rollDice() {
         diceArray[dice] = Math.floor(Math.random() * 6) + 1;
         document.getElementById('dice').children[dice].src = `assets/images/dice-${diceArray[dice]}.png` ;
     }
-    console.log(diceArray);
     return diceArray;
 }
 
@@ -157,12 +239,56 @@ function rollDice() {
 function endTurn() {
     let scoresheetField = this.event.srcElement;
     if (scoresheetField.classList.length === 0) {
-        scoresheetField.nextElementSibling.textContent = calculateFieldScore(scoresheetField.nextElementSibling.parentElement.id);
+        if (scoresheetField.nextElementSibling.textContent !== '') {
+            alert('Field already filled, pick another field');
+        } else {
+            scoresheetField.nextElementSibling.textContent = calculateFieldScore(scoresheetField.nextElementSibling.parentElement.id, scoresheetField.nextElementSibling);
+        }
     } else if (scoresheetField.classList.length === 1) {
-        scoresheetField.textContent = calculateFieldScore(scoresheetField.parentElement.id);
+        if (scoresheetField.textContent !== '') {
+            alert('Field already filled, pick another field');
+        } else {
+            scoresheetField.textContent = calculateFieldScore(scoresheetField.parentElement.id, scoresheetField);
+        }
     } else {
         throw "You cannot enter your score here";
     }
+}
+
+function findDuplicates() {
+    let diceFaces = {
+        onesInArray: 0,
+        twosInArray: 0,
+        threesInArray: 0,
+        foursInArray: 0,
+        fivesInArray: 0,
+        sixesInArray: 0,
+    }
+    for (let i = 0; i < diceArray.length; i++) {
+        switch(diceArray[i]) {
+            case 1:
+                diceFaces.onesInArray++;
+                break;
+            case 2:
+                diceFaces.twosInArray++;
+                break;
+            case 3:
+                diceFaces.threesInArray++;
+                break;
+            case 4:
+                diceFaces.foursInArray++;
+                break;
+            case 5:
+                diceFaces.fivesInArray++;
+                break;
+            case 6:
+                diceFaces.sixesInArray++;
+                break;
+            default:
+                throw "The item in the array is not a number!"
+        }
+    }
+    return diceFaces;
 }
 
 /**
