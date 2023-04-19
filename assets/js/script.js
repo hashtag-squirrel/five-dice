@@ -4,6 +4,19 @@ const diceTwo = document.getElementById('dice').children[1];
 const diceThree = document.getElementById('dice').children[2];
 const diceFour = document.getElementById('dice').children[3];
 const diceFive = document.getElementById('dice').children[4];
+const ones = document.getElementById('ones').children[1];
+const twos = document.getElementById('twos').children[1];
+const threes = document.getElementById('threes').children[1];
+const fours = document.getElementById('fours').children[1];
+const fives = document.getElementById('fives').children[1];
+const sixes = document.getElementById('sixes').children[1];
+const threeOfAKind = document.getElementById('three-of-a-kind').children[1];
+const fourOfAKind = document.getElementById('four-of-a-kind').children[1];
+const fiveOfAKind = document.getElementById('five-of-a-kind').children[1];
+const fullHouse = document.getElementById('full-house').children[1];
+const smallStraight = document.getElementById('small-straight').children[1];
+const straight = document.getElementById('straight').children[1];
+const chance = document.getElementById('chance').children[1];
 
 let diceArray = [0, 0, 0, 0, 0];
 
