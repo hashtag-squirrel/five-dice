@@ -129,21 +129,61 @@ function calculateFieldScore(fieldId, field) {
                 }
                 break;
             case 'three-of-a-kind':
-                if (Object.values(findDuplicates()).includes(3) ||
-                    Object.values(findDuplicates()).includes(4) ||
-                    Object.values(findDuplicates()).includes(5)
-                ) {
+                if (Object.values(findDuplicates()).includes(3)) {
                     for (i = 0; i < diceArray.length; i++) {
                         score = score + diceArray[i].value;
                     }
+                }
+                // if (findDuplicates().onesInArray >= 3) {
+                //     for (i = 0; i < diceArray.length; i++) {
+                //         score = score + diceArray[i].value;
+                //     }
+                // } else if (findDuplicates().twosInArray >= 3) {
+                //     for (i = 0; i < diceArray.length; i++) {
+                //         score = score + diceArray[i].value;
+                //     }
+                // } else if (findDuplicates().threesInArray >= 3) {
+                //     for (i = 0; i < diceArray.length; i++) {
+                //         score = score + diceArray[i].value;
+                //     }
+                // } else if (findDuplicates().foursInArray >= 3) {
+                //     for (i = 0; i < diceArray.length; i++) {
+                //         score = score + diceArray[i].value;
+                //     }
+                // } else if (findDuplicates().fivesInArray >= 3) {
+                //     for (i = 0; i < diceArray.length; i++) {
+                //         score = score + diceArray[i].value;
+                //     }
+                // } else if (findDuplicates.sixesInArray >= 3) {
+                //     for (i = 0; i < diceArray.length; i++) {
+                //         score = score + diceArray[i].value;
+                //     }
                 } else {
                     score = 0;
                 }
                 break;
             case 'four-of-a-kind':
-                if (Object.values(findDuplicates()).includes(4) ||
-                    Object.values(findDuplicates()).includes(5)
-                ) {
+                if (findDuplicates().onesInArray >= 4) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i].value;
+                    }
+                } else if (findDuplicates().twosInArray >= 4) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i].value;
+                    }
+                } else if (findDuplicates().threesInArray >= 4) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i].value;
+                    }
+                } else if (findDuplicates().foursInArray >= 4) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i].value;
+                    }
+                } else if (findDuplicates().fivesInArray >= 4) {
+                    for (i = 0; i < diceArray.length; i++) {
+                        score = score + diceArray[i].value;
+                    }
+                } else if (findDuplicates.sixesInArray >= 4) {
                     for (i = 0; i < diceArray.length; i++) {
                         score = score + diceArray[i].value;
                     }
@@ -152,6 +192,7 @@ function calculateFieldScore(fieldId, field) {
                 }
                 break;
             case 'five-of-a-kind':
+                console.log(diceArray);
                 if (Object.values(findDuplicates()).includes(5)) 
                 {
                     score = 50;
@@ -160,18 +201,17 @@ function calculateFieldScore(fieldId, field) {
                 }
                 break;
             case 'full-house':
-                if ((Object.values(findDuplicates()).includes(3) && Object.values(findDuplicates()).includes(2)) ||
-                    Object.values(findDuplicates()).includes(5)) 
-                {
+                if (Object.values(findDuplicates()).includes(3) && Object.values(findDuplicates()).includes(2) ||
+                    Object.values(findDuplicates()).includes(5)) {
                     score = 25;
                 } else {
                     score = 0;
                 }
                 break;
             case 'small-straight':
-                if ((findNumber(1) && findNumber(2) && findNumber(3) && findNumber(4)) ||
-                    (findNumber(2) && findNumber(3) && findNumber(4) && findNumber(5)) ||
-                    (findNumber(3) && findNumber(4) && findNumber(5) && findNumber(6))) 
+                if ((diceArray.includes(1) && diceArray.includes(2) && diceArray.includes(3) && diceArray.includes(4)) ||
+                    (diceArray.includes(2) && diceArray.includes(3) && diceArray.includes(4) && diceArray.includes(5)) ||
+                    (diceArray.includes(3) && diceArray.includes(4) && diceArray.includes(5) && diceArray.includes(6))) 
                 {
                     score = 30;
                 } else {
@@ -179,8 +219,8 @@ function calculateFieldScore(fieldId, field) {
                 }
                 break;
             case 'straight':
-                if ((findNumber(1) && findNumber(2) && findNumber(3) && findNumber(4) && findNumber(5)) ||
-                (findNumber(2) && findNumber(3) && findNumber(4) && findNumber(5) && findNumber(6))) 
+                if ((diceArray.includes(1) && diceArray.includes(2) && diceArray.includes(3) && diceArray.includes(4) && diceArray.includes(5)) ||
+                (diceArray.includes(2) && diceArray.includes(3) && diceArray.includes(4) && diceArray.includes(5) && diceArray.includes(6)))
                 {
                     score = 40;
                 } else {
@@ -235,18 +275,10 @@ function toggleDice(event) {
                 diceArray[4].state = 'locked';
                 break;
         }
-        console.log(diceArray);
     } else {
         // unlock
         diceClassList.remove('locked');
-    }
-    console.log(clickedDice);
-    
-    
-    // get toggled dice
-    // check dice classList
-    // change diceArray item to locked/unlocked
-    // adjust classList
+    }    
 }
 
 /**
@@ -254,6 +286,7 @@ function toggleDice(event) {
 * and indicates how many rolls left per turn
 */
 function rollDice() {
+    
     if (numberOfRolls > 0) {
         for (let dice in diceArray) {
             diceArray[dice].value = Math.floor(Math.random() * 6) + 1;
@@ -261,6 +294,8 @@ function rollDice() {
         }
         numberOfRolls = numberOfRolls - 1;
         updateRolls();
+        findDuplicates();
+        
     } else {
         alert('No rolls left. Please pick a field to enter your score');
     }
@@ -302,6 +337,7 @@ function endTurn() {
 * Checks dice for duplicate faces and returns object diceFaces 
 */
 function findDuplicates() {
+    console.log('finding duplicates');
     let diceFaces = {
         onesInArray: 0,
         twosInArray: 0,
@@ -335,17 +371,6 @@ function findDuplicates() {
         }
     }
     return diceFaces;
-}
-
-// Returns true if a number is a value of the diceArray
-function findNumber(number) {
-    let containsNumber = false;
-    for (let i = 0; i < diceArray.length; i++) {
-        if (diceArray[i].value === number) {
-            containsNumber = true;
-        } 
-    }
-    return containsNumber;
 }
 
 /**
