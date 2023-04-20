@@ -1,5 +1,5 @@
 // Declaring constants
-
+const numberOfRollsSpan = document.getElementById('number-of-rolls');
 const rollBtn = document.getElementById('roll-button');
 
 const tableBody = document.getElementsByTagName('tbody')[0];
@@ -26,6 +26,7 @@ const chance = document.getElementById('chance').children[1];
 let diceArray = [0, 0, 0, 0, 0];
 let totalScore = 0;
 let totalScoreDisplay = document.getElementById('score');
+let numberOfRolls = 3;
 
 // // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
@@ -37,8 +38,17 @@ document.addEventListener('DOMContentLoaded', function() {
 */ 
 function runGame() {
     console.log("Game is running");
+    numberOfRolls = 3;
+    updateRolls();
     rollBtn.addEventListener('click', function() {rollDice()});
     tableBody.addEventListener('click', function(event) {endTurn(event)});
+}
+
+/**
+* Updates the number of rolls displayed to the player
+*/
+function updateRolls() {
+    numberOfRollsSpan.textContent = numberOfRolls;
 }
 
 /**
@@ -192,12 +202,7 @@ function calculateFieldScore(fieldId, field) {
         }
         calculateTotalScore(score);
         return score;
-    } else {
-        oldScore = field.textContent;
-        score = field.textContent;
-        
-    }
-    
+    } 
 }
 
 /** 
@@ -228,9 +233,15 @@ function unlockDice() {
 * and indicates how many rolls left per turn
 */
 function rollDice() {
-    for (let dice in diceArray) {
-        diceArray[dice] = Math.floor(Math.random() * 6) + 1;
-        document.getElementById('dice').children[dice].src = `assets/images/dice-${diceArray[dice]}.png` ;
+    if (numberOfRolls > 0) {
+        for (let dice in diceArray) {
+            diceArray[dice] = Math.floor(Math.random() * 6) + 1;
+            document.getElementById('dice').children[dice].src = `assets/images/dice-${diceArray[dice]}.png` ;
+        }
+        numberOfRolls = numberOfRolls - 1;
+        updateRolls();
+    } else {
+        alert('No rolls left. Please pick a field to enter your score');
     }
     return diceArray;
 }
@@ -245,12 +256,16 @@ function endTurn() {
             alert('Field already filled, pick another field');
         } else {
             scoresheetField.nextElementSibling.textContent = calculateFieldScore(scoresheetField.nextElementSibling.parentElement.id, scoresheetField.nextElementSibling);
+            numberOfRolls = 3;
+            updateRolls();
         }
     } else if (scoresheetField.classList.length === 1) {
         if (scoresheetField.textContent !== '') {
             alert('Field already filled, pick another field');
         } else {
             scoresheetField.textContent = calculateFieldScore(scoresheetField.parentElement.id, scoresheetField);
+            numberOfRolls = 3;
+            updateRolls();
         }
     } else {
         throw "You cannot enter your score here";
