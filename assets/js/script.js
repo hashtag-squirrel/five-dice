@@ -235,18 +235,27 @@ function toggleDice(event) {
                 diceArray[4].state = 'locked';
                 break;
         }
-        console.log(diceArray);
     } else {
         // unlock
         diceClassList.remove('locked');
+        switch (diceId) {
+            case 'dice-one':
+                diceArray[0].state = '';
+                break;
+            case 'dice-two':
+                diceArray[1].state = '';
+                break;
+            case 'dice-three':
+                diceArray[2].state = '';
+                break;
+            case 'dice-four':
+                diceArray[3].state = '';
+                break;
+            case 'dice-five':
+                diceArray[4].state = '';
+                break;
+        }
     }
-    console.log(clickedDice);
-    
-    
-    // get toggled dice
-    // check dice classList
-    // change diceArray item to locked/unlocked
-    // adjust classList
 }
 
 /**
@@ -256,8 +265,12 @@ function toggleDice(event) {
 function rollDice() {
     if (numberOfRolls > 0) {
         for (let dice in diceArray) {
-            diceArray[dice].value = Math.floor(Math.random() * 6) + 1;
-            document.getElementById('dice').children[dice].src = `assets/images/dice-${diceArray[dice].value}.png` ;
+            if (diceArray[dice].state === 'locked') {
+                continue;
+            } else {
+                diceArray[dice].value = Math.floor(Math.random() * 6) + 1;
+                document.getElementById('dice').children[dice].src = `assets/images/dice-${diceArray[dice].value}.png` ;
+            }
         }
         numberOfRolls = numberOfRolls - 1;
         updateRolls();
