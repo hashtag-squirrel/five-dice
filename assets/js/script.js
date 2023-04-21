@@ -269,6 +269,7 @@ function unlockAllDice() {
     for (let i = 0; i < 5; i++) {
         if (allDice.children[i].classList.length > 0) {
             allDice.children[i].classList.remove('locked');
+            diceArray[i].state = 'unlocked';
         } else {
             continue;
         }

@@ -70,11 +70,6 @@ main {
     border-radius: 10px;
 }
 
-#dice img:hover {
-    border: 3px solid var(--highlight-color);
-    border-radius: 10px;
-}
-
 #dice img.locked {
     border: 3px solid var(--highlight-color);
     border-radius: 10px;
