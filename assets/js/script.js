@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
 * Runs the game
 */ 
 function runGame() {
-    console.log("Game is running");
+    console.log("Running game...");
     numberOfRolls = 3;
     updateRolls();
     rollBtn.addEventListener('click', function() {rollDice()});
@@ -76,6 +76,7 @@ function runGame() {
 * Updates the number of rolls displayed to the player
 */
 function updateRolls() {
+    console.log('Updating number of rolls...')
     numberOfRollsSpan.textContent = numberOfRolls;
 }
 
@@ -83,6 +84,7 @@ function updateRolls() {
 * Calculates the score for a picked field and returns the score
 */ 
 function calculateFieldScore(fieldId, field) {
+    console.log('Calculating field score...')
     let score = 0;
     if (field.textContent === '') {
         switch (fieldId) {
@@ -202,6 +204,7 @@ function calculateFieldScore(fieldId, field) {
 * Calculates the total score whenever a field is filled
 */
 function calculateTotalScore(fieldScore) {
+    console.log('Calculating total score...')
     totalScore = totalScore + fieldScore;
     totalScoreDisplay.textContent = totalScore;
     return totalScore;
@@ -211,7 +214,7 @@ function calculateTotalScore(fieldScore) {
 * Function to lock or unlock dice based on player's choice, returns dice state to diceArray
 */
 function toggleDice(event) {   
-    console.log("Toggling Dice");
+    console.log("Toggling dice...");
     let clickedDice = this.event.srcElement;
     let diceId = clickedDice.id;
     let diceClassList = clickedDice.classList;   
@@ -259,10 +262,25 @@ function toggleDice(event) {
 }
 
 /**
+ * Function to set classList of all dice to empty
+ */
+function unlockAllDice() {
+    console.log('Unlocking dice...');
+    for (let i = 0; i < 5; i++) {
+        if (allDice.children[i].classList.length > 0) {
+            allDice.children[i].classList.remove('locked');
+        } else {
+            continue;
+        }
+    }
+}
+
+/**
 * Generates random numbers between 1 and 6 for unlocked dice, returns the dice values
 * and indicates how many rolls left per turn
 */
 function rollDice() {
+    console.log('Rolling dice...')
     if (numberOfRolls > 0) {
         for (let dice in diceArray) {
             if (diceArray[dice].state === 'locked') {
@@ -284,6 +302,7 @@ function rollDice() {
 * Lets the player pick a field for the turn and ends the turn
 */
 function endTurn() {
+    console.log('Ending turn...')
     let scoresheetField = this.event.srcElement;
     if (diceArray[0].value !== 0) {
         if (scoresheetField.classList.length === 0) {
@@ -293,6 +312,7 @@ function endTurn() {
                 scoresheetField.nextElementSibling.textContent = calculateFieldScore(scoresheetField.nextElementSibling.parentElement.id, scoresheetField.nextElementSibling);
                 numberOfRolls = 3;
                 updateRolls();
+                unlockAllDice();
             }
         } else if (scoresheetField.classList.length === 1) {
             if (scoresheetField.textContent !== '') {
@@ -301,6 +321,7 @@ function endTurn() {
                 scoresheetField.textContent = calculateFieldScore(scoresheetField.parentElement.id, scoresheetField);
                 numberOfRolls = 3;
                 updateRolls();
+                unlockAllDice();
             }
         } else {
             throw "You cannot enter your score here";
@@ -315,6 +336,7 @@ function endTurn() {
 * Checks dice for duplicate faces and returns object diceFaces 
 */
 function findDuplicates() {
+    console.log('Finding duplicates...')
     let diceFaces = {
         onesInArray: 0,
         twosInArray: 0,
@@ -352,6 +374,7 @@ function findDuplicates() {
 
 // Returns true if a number is a value of the diceArray
 function findNumber(number) {
+    console.log('Finding number...')
     let containsNumber = false;
     for (let i = 0; i < diceArray.length; i++) {
         if (diceArray[i].value === number) {
@@ -365,5 +388,5 @@ function findNumber(number) {
 * Displays a rules popup
 */ 
 function displayRules() {
-    console.log("Displaying Rules");
+    console.log("Displaying rules...");
 }
