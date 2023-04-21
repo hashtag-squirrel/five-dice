@@ -89,7 +89,7 @@
 ### Goals
 <span style="color:red">WIP</span>
 
-Basic functionality needed: 
+Basic functionality needed for MVP: 
 
 - 1 Player Game
 - Calculate score per field/total
