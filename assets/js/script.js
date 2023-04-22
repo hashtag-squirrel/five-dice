@@ -34,6 +34,8 @@ const smallStraight = document.getElementById('small-straight').children[1];
 const straight = document.getElementById('straight').children[1];
 const chance = document.getElementById('chance').children[1];
 
+const totalScoreDisplay = document.getElementById('score');
+
 // Constants from footer
 const rulesBtn = document.getElementById('rules');
 
@@ -60,9 +62,9 @@ let diceArray = [
         state: 'unlocked',
     },
 ];
-let totalScore = 0;
-let totalScoreDisplay = document.getElementById('score');
-let numberOfRolls = 3;
+let totalScore;
+let numberOfRolls;
+let numberOfRounds;
 
 // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
@@ -74,12 +76,31 @@ document.addEventListener('DOMContentLoaded', function() {
 */ 
 function runGame() {
     console.log("Running game...");
+    for (i = 0; i < 13; i++) {
+        tableBody.children[i].children[1].textContent = '';
+    }
+    totalScore = 0;
     numberOfRolls = 3;
+    numberOfRounds = 13;
     updateRolls();
     rollBtn.addEventListener('click', function() {rollDice()});
     tableBody.addEventListener('click', function(event) {endTurn(event)});
     allDice.addEventListener('click', function(event) {toggleDice(event)});
     rulesBtn.addEventListener('click', function() {displayRules()});
+}
+
+/**
+ * Runs when the game is over
+ */
+function endGame() {
+    console.log('Game is over');
+    setTimeout(function () {
+        if (confirm(`Congratulations, your score is ${totalScore}!\nDo you want to play again?`)) {
+            runGame();
+        } else {
+            alert("See you next time!");
+        }
+    }, 1000);
 }
 
 /**
@@ -313,9 +334,9 @@ function rollDice() {
 * Lets the player pick a field for the turn and ends the turn
 */
 function endTurn() {
-    console.log('Ending turn...')
+    console.log(`Ending turn... ${numberOfRounds} rounds left`)
     let scoresheetField = this.event.srcElement;
-    if (diceArray[0].value !== 0) {
+    if (numberOfRolls < 3) {
         if (scoresheetField.classList.length === 0) {
             if (scoresheetField.nextElementSibling.textContent !== '') {
                 alert('Field already filled, pick another field');
@@ -324,6 +345,7 @@ function endTurn() {
                 numberOfRolls = 3;
                 updateRolls();
                 unlockAllDice();
+                numberOfRounds = numberOfRounds - 1;
             }
         } else if (scoresheetField.classList.length === 1) {
             if (scoresheetField.textContent !== '') {
@@ -333,14 +355,17 @@ function endTurn() {
                 numberOfRolls = 3;
                 updateRolls();
                 unlockAllDice();
+                numberOfRounds = numberOfRounds - 1;
             }
         } else {
             throw "You cannot enter your score here";
         }
-    } else {
-        alert('You need to roll the dice to start the game');
+    } else if (numberOfRolls === 3) {
+        alert('You need to roll the dice to start the round.');
     }
-    
+    if (numberOfRounds === 0) {
+        endGame();
+    }
 }
 
 /**
