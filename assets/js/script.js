@@ -325,8 +325,10 @@ function rollDice() {
         }
         numberOfRolls = numberOfRolls - 1;
         updateRolls();
+        if (numberOfRolls === 0) {
+            disableRollBtn();
+        }
     } else {
-        disableRollBtn();
         alert('No rolls left. Please pick a field to enter your score');
     }
     return diceArray;
@@ -338,7 +340,9 @@ function rollDice() {
 function endTurn() {
     console.log(`Ending turn... ${numberOfRounds} rounds left`)
     let scoresheetField = this.event.srcElement;
-    if (numberOfRolls < 3) {
+    if (numberOfRolls === 3) {
+        alert('You need to roll the dice to start the round.');
+    } else if (numberOfRolls < 3) {
         if (scoresheetField.classList.length === 0) {
             if (scoresheetField.nextElementSibling.textContent !== '') {
                 alert('Field already filled, pick another field');
@@ -362,8 +366,6 @@ function endTurn() {
         } else {
             throw "You cannot enter your score here";
         }
-    } else if (numberOfRolls === 3) {
-        alert('You need to roll the dice to start the round.');
     }
     if (numberOfRounds === 0) {
         endGame();
