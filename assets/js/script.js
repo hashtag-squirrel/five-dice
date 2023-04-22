@@ -14,9 +14,10 @@ const diceFive = document.getElementById('dice').children[4];
 
 // Constants from rules area
 const rulesArea = document.getElementById('rules-area');
-const hideRulesBtn = document.getElementById('rules-area-btn');
+const hideRulesBtn = document.getElementById('hide-rules-btn');
 
 // Constants from scoresheet area
+const scoresheetArea = document.getElementById('scoresheet-area');
 const tableBody = document.getElementsByTagName('tbody')[0];
 
 const ones = document.getElementById('ones').children[1];
@@ -399,10 +400,13 @@ function findNumber(number) {
 */ 
 function displayRules() {
     console.log("Displaying rules...");
-    rulesArea.style = "display: inline-block";
+    rulesArea.style = "display: block";
     gameArea.style = "display: none";
+    scoresheetArea.style = "display: none";
+    rulesBtn.style = "display: none";
     hideRulesBtn.addEventListener('click', function() {
         rulesArea.style = "display: none";
         gameArea.style = "";
+        scoresheetArea.style = "";
     })
 }

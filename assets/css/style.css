@@ -77,7 +77,6 @@ main {
 
 /* Rules Section */
 #rules-area {
-    width: 300px;
     background-color: var(--primary-color);
     color: var(--light-color);
     padding: 30px;
