@@ -65,6 +65,7 @@ let diceArray = [
 let totalScore;
 let numberOfRolls;
 let numberOfRounds;
+let rollBtnActive = true;
 
 // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
@@ -83,10 +84,10 @@ function runGame() {
     numberOfRolls = 3;
     numberOfRounds = 13;
     updateRolls();
-    rollBtn.addEventListener('click', function() {rollDice()});
+    enableRollBtn();
     tableBody.addEventListener('click', function(event) {endTurn(event)});
     allDice.addEventListener('click', function(event) {toggleDice(event)});
-    rulesBtn.addEventListener('click', function() {displayRules()});
+    rulesBtn.addEventListener('click', displayRules);
 }
 
 /**
@@ -325,6 +326,7 @@ function rollDice() {
         numberOfRolls = numberOfRolls - 1;
         updateRolls();
     } else {
+        disableRollBtn();
         alert('No rolls left. Please pick a field to enter your score');
     }
     return diceArray;
@@ -418,6 +420,18 @@ function findNumber(number) {
         } 
     }
     return containsNumber;
+}
+
+// Removes Event Listener for Roll Button and removes class 'active'
+function disableRollBtn() {
+    rollBtn.classList = "btn inactive";
+    rollBtn.removeEventListener('click', rollDice);
+}
+
+// Adds Event Listener for Roll Button and adds class 'active'
+function enableRollBtn() {
+    rollBtn.classList = "btn active";
+    rollBtn.addEventListener('click', rollDice);
 }
 
 /**
