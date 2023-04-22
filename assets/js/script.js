@@ -1,7 +1,10 @@
 // Declaring constants
+// Constants from game area
 const numberOfRollsSpan = document.getElementById('number-of-rolls');
 const rollBtn = document.getElementById('roll-button');
+const gameArea = document.getElementById('game-area');
 
+// Constants for dice
 const allDice = document.getElementById('dice');
 const diceOne = document.getElementById('dice').children[0];
 const diceTwo = document.getElementById('dice').children[1];
@@ -9,6 +12,12 @@ const diceThree = document.getElementById('dice').children[2];
 const diceFour = document.getElementById('dice').children[3];
 const diceFive = document.getElementById('dice').children[4];
 
+// Constants from rules area
+const rulesArea = document.getElementById('rules-area');
+const hideRulesBtn = document.getElementById('hide-rules-btn');
+
+// Constants from scoresheet area
+const scoresheetArea = document.getElementById('scoresheet-area');
 const tableBody = document.getElementsByTagName('tbody')[0];
 
 const ones = document.getElementById('ones').children[1];
@@ -25,6 +34,7 @@ const smallStraight = document.getElementById('small-straight').children[1];
 const straight = document.getElementById('straight').children[1];
 const chance = document.getElementById('chance').children[1];
 
+// Constants from footer
 const rulesBtn = document.getElementById('rules');
 
 // Declaring variables
@@ -69,7 +79,7 @@ function runGame() {
     rollBtn.addEventListener('click', function() {rollDice()});
     tableBody.addEventListener('click', function(event) {endTurn(event)});
     allDice.addEventListener('click', function(event) {toggleDice(event)});
-
+    rulesBtn.addEventListener('click', function() {displayRules()});
 }
 
 /**
@@ -390,4 +400,14 @@ function findNumber(number) {
 */ 
 function displayRules() {
     console.log("Displaying rules...");
+    rulesArea.style = "display: block";
+    gameArea.style = "display: none";
+    scoresheetArea.style = "display: none";
+    rulesBtn.style = "display: none";
+    hideRulesBtn.addEventListener('click', function() {
+        rulesArea.style = "display: none";
+        gameArea.style = "";
+        scoresheetArea.style = "";
+        rulesBtn.style = "";
+    })
 }

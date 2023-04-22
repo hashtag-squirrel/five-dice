@@ -75,6 +75,17 @@ main {
     border-radius: 10px;
 }
 
+/* Rules Section */
+#rules-area {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 30px;
+}
+
+#rules-area p {
+    margin-bottom: 30px;
+}
+
 /* Scoresheet section */
 #scoresheet-area {
     width: 300px;

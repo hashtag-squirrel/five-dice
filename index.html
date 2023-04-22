@@ -32,6 +32,33 @@
             </div>
         </section>
 
+        <!-- Rules Section -->
+        <section id="rules-area" style="display: none">
+            <h1>Rules</h1>
+            <div>
+                <h2>How to play:</h2>
+                <p>Click on <strong>"Roll"</strong> to start the game. Each turn you have <strong>3 rolls</strong> of the dice. To "lock" a dice from the roll, click on it and you
+                will see a blue border around locked dice. You can unlock it again at any point. Within a turn, after the first roll, you can 
+                decide to end the turn and enter your score in the scoresheet in any empty field. At the end of the turn, the dice will unlock automatically.
+                The objective is to score as many points as possible on the scoresheet.
+                </p>
+            </div>
+            <div>
+                <h2>How the scores work:</h2>
+                <p><strong>Ones to sixes:</strong>
+                    The sum of dice with the number corresponding the field is counted, e.g. all ones, all twos, etc...</p>
+                <p><strong>Three of a kind, four of a kind:</strong> If you have three of a kind or four of a kind, the sum of all dice is counted. If you don't have 
+                    three or four of a kind, you get 0 points.
+                </p>
+                <p><strong>Five of a kind:</strong> 50 points if you have five same dice, 0 points if you don't.</p>
+                <p><strong>Full House:</strong> 25 points if you have three of a kind and two of a kind, e.g. three times 3 and two times 1. Can also be filled with 
+                    five of one kind, but still only awards 25 points. 0 points if you don't meet the conditions.</p>
+                <p><strong>Small Straight/Straight:</strong> 30 and 40 points respectively, awarded for four or five sequential dice, e.g. 1-2-3-4(-5).</p>
+                <p><strong>Chance:</strong> Sum of all dice, no condition.</p>
+            </div>
+            <button id="hide-rules-btn" class="btn">Back to game</button>
+        </section>
+
         <!-- Scoresheet Section -->
         <section id="scoresheet-area">
             <table>
