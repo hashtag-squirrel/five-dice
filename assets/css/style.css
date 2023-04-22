@@ -136,3 +136,15 @@ footer {
 .btn:hover {
     background-color: var(--highlight-color);
 }
+
+/* Media queries for screens with width smaller than 750px */
+
+@media screen and (max-width: 750px) {
+    main {
+        flex-direction: column;
+        
+    }
+    #game-area {
+        margin-top: 30px;
+    }
+}
