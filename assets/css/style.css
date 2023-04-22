@@ -6,7 +6,7 @@
 :root {
     --primary-color: #35547A;
     --secondary-color: #6E7A95;
-    --tertiary-color: #909494;
+    --tertiary-color: #C6D0D0;
     --light-color: #FBF9F9;
     --highlight-color: #8DD4EA;
 }
@@ -75,12 +75,20 @@ main {
     border-radius: 10px;
 }
 
+#roll-button {
+    width: 125px;
+}
+
 #roll-button.active {
     border: 3px solid var(--highlight-color);
 }
 
+#roll-button.inactive {
+    background-color: var(--tertiary-color);
+}
+
 #roll-button.inactive:hover {
-    background-color: var(--light-color);
+    background-color: var(--tertiary-color);
 }
 
 /* Rules Section */

@@ -428,12 +428,14 @@ function findNumber(number) {
 function disableRollBtn() {
     rollBtn.classList = "btn inactive";
     rollBtn.removeEventListener('click', rollDice);
+    rollBtn.textContent = "Pick A Score";
 }
 
 // Adds Event Listener for Roll Button and adds class 'active'
 function enableRollBtn() {
     rollBtn.classList = "btn active";
     rollBtn.addEventListener('click', rollDice);
+    rollBtn.textContent = "Roll Dice";
 }
 
 /**
