@@ -72,6 +72,7 @@ let playerName = 'Player';
 
 // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
+    getPlayerName();
     playerName = playerNameDisplay.addEventListener('click', changePlayerName);
     runGame();
 })
@@ -452,12 +453,25 @@ function changePlayerName() {
     let newName = prompt('Please enter your name');
     if (newName !== '' && newName !== null) {
         playerNameDisplay.textContent = newName;
+        localStorage.setItem("playerName", newName);
     } else {
         console.log('Player did not choose a name');
         newName = 'Player';
         playerNameDisplay.textContent = newName;
     }
     return newName;
+}
+
+/**
+ * Gets the player name if one is saved to local storage
+ */
+function getPlayerName() {
+    let savedPlayerName = localStorage.getItem('playerName');
+    if (savedPlayerName !== '') {
+        playerNameDisplay.textContent = savedPlayerName;
+    } else {
+        playerNameDisplay.textContent = 'Player';
+    }
 }
 
 /**
