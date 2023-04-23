@@ -1,3 +1,5 @@
+import { apiKey } from './credentials.js';
+
 // Declaring constants
 // Constants from game area
 const numberOfRollsSpan = document.getElementById('number-of-rolls');
@@ -67,12 +69,13 @@ let diceArray = [
 let totalScore;
 let numberOfRolls;
 let numberOfRounds;
-let rollBtnActive = true;
 let playerName;
+let randomName;
 
 // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
-    getPlayerName();
+    getRandomName();
+    setTimeout(getPlayerName, 300);
     playerName = playerNameDisplay.addEventListener('click', changePlayerName);
     runGame();
 })
@@ -82,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
 */ 
 function runGame() {
     console.log("Running game...");
-    for (i = 0; i < 13; i++) {
+    for (let i = 0; i < 13; i++) {
         tableBody.children[i].children[1].textContent = '';
     }
     totalScore = 0;
@@ -450,17 +453,21 @@ function enableRollBtn() {
  */
 function changePlayerName() {
     console.log('Changing player name...');
-    let newName = prompt('Please enter your name');
+    let newName = prompt('Please enter your name. If you do not want to pick a name now, the computer will assign a random name.\n\nYou can change the name any time by clicking on the name.');
     if (newName !== '' && newName !== null) {
         playerNameDisplay.textContent = newName;
-        localStorage.setItem("playerName", newName);
+        localStorage.setItem('playerName', newName);
+        return newName;
     } else {
-        console.log('Player did not choose a name');
-        newName = 'Player';
-        playerNameDisplay.textContent = newName;
-        localStorage.removeItem('playerName');
+        getRandomName();
+        setTimeout(function() {
+            console.log(`Player did not choose a name, generated random name ${randomName}`);
+            playerNameDisplay.textContent = randomName;
+            return randomName;
+        }, 500);
+        
     }
-    return newName;
+    
 }
 
 /**
@@ -468,12 +475,26 @@ function changePlayerName() {
  */
 function getPlayerName() {
     let savedPlayerName = localStorage.getItem('playerName');
+    let newPlayerName;
     if (savedPlayerName !== '' && savedPlayerName !== null) {
-        playerNameDisplay.textContent = savedPlayerName;
+        newPlayerName = savedPlayerName;
+        playerNameDisplay.textContent = newPlayerName;
     } else {
-        playerName = 'Player';
-        playerNameDisplay.textContent = playerName;
+        changePlayerName();
     }
+}
+
+/**
+ * Gets a random name from a name generator API and returns it
+ */
+async function getRandomName() {
+    // API call for random name
+    const url = `https://api.parser.name/?api_key=${apiKey}&endpoint=generate&country-code='UK'`
+    const response = await fetch(url);
+    const jsonData = await response.json();
+    randomName = jsonData.data[0]['name']['firstname']['name'];
+    // console.log(randomName);
+    return randomName;
 }
 
 /**
