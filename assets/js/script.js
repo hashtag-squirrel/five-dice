@@ -19,6 +19,7 @@ const hideRulesBtn = document.getElementById('hide-rules-btn');
 // Constants from scoresheet area
 const scoresheetArea = document.getElementById('scoresheet-area');
 const tableBody = document.getElementsByTagName('tbody')[0];
+const playerNameDisplay = document.getElementById('player-name');
 
 const ones = document.getElementById('ones').children[1];
 const twos = document.getElementById('twos').children[1];
@@ -66,9 +67,11 @@ let totalScore;
 let numberOfRolls;
 let numberOfRounds;
 let rollBtnActive = true;
+let playerName = 'Player';
 
 // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
+    playerName = playerNameDisplay.addEventListener('click', changePlayerName);
     runGame();
 })
 
@@ -431,11 +434,29 @@ function disableRollBtn() {
     rollBtn.textContent = "Pick A Score";
 }
 
-// Adds Event Listener for Roll Button and adds class 'active'
+/**
+ * Adds Event Listener for Roll Button and adds class 'active'
+*/ 
 function enableRollBtn() {
     rollBtn.classList = "btn active";
     rollBtn.addEventListener('click', rollDice);
     rollBtn.textContent = "Roll Dice";
+}
+
+/**
+ * Changes player name
+ */
+function changePlayerName() {
+    console.log('Changing player name...');
+    let newName = prompt('Please enter your name');
+    if (newName !== '' && newName !== null) {
+        playerNameDisplay.textContent = newName;
+    } else {
+        console.log('Player did not choose a name');
+        newName = 'Player';
+        playerNameDisplay.textContent = newName;
+    }
+    return newName;
 }
 
 /**
