@@ -68,7 +68,7 @@ let totalScore;
 let numberOfRolls;
 let numberOfRounds;
 let rollBtnActive = true;
-let playerName = 'Player';
+let playerName;
 
 // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
@@ -458,6 +458,7 @@ function changePlayerName() {
         console.log('Player did not choose a name');
         newName = 'Player';
         playerNameDisplay.textContent = newName;
+        localStorage.removeItem('playerName');
     }
     return newName;
 }
@@ -467,10 +468,11 @@ function changePlayerName() {
  */
 function getPlayerName() {
     let savedPlayerName = localStorage.getItem('playerName');
-    if (savedPlayerName !== '') {
+    if (savedPlayerName !== '' && savedPlayerName !== null) {
         playerNameDisplay.textContent = savedPlayerName;
     } else {
-        playerNameDisplay.textContent = 'Player';
+        playerName = 'Player';
+        playerNameDisplay.textContent = playerName;
     }
 }
 
