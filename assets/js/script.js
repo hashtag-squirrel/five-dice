@@ -1,3 +1,5 @@
+import { apiKey } from './credentials.js';
+
 // Declaring constants
 // Constants from game area
 const numberOfRollsSpan = document.getElementById('number-of-rolls');
@@ -19,6 +21,7 @@ const hideRulesBtn = document.getElementById('hide-rules-btn');
 // Constants from scoresheet area
 const scoresheetArea = document.getElementById('scoresheet-area');
 const tableBody = document.getElementsByTagName('tbody')[0];
+const playerNameDisplay = document.getElementById('player-name');
 
 const ones = document.getElementById('ones').children[1];
 const twos = document.getElementById('twos').children[1];
@@ -37,6 +40,7 @@ const chance = document.getElementById('chance').children[1];
 const totalScoreDisplay = document.getElementById('score');
 
 // Constants from footer
+const footer = document.getElementsByTagName('footer')[0];
 const rulesBtn = document.getElementById('rules');
 
 // Declaring variables
@@ -65,9 +69,14 @@ let diceArray = [
 let totalScore;
 let numberOfRolls;
 let numberOfRounds;
+let playerName;
+let randomName;
 
 // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
+    getRandomName();
+    setTimeout(getPlayerName, 300);
+    playerName = playerNameDisplay.addEventListener('click', changePlayerName);
     runGame();
 })
 
@@ -76,17 +85,17 @@ document.addEventListener('DOMContentLoaded', function() {
 */ 
 function runGame() {
     console.log("Running game...");
-    for (i = 0; i < 13; i++) {
+    for (let i = 0; i < 13; i++) {
         tableBody.children[i].children[1].textContent = '';
     }
     totalScore = 0;
     numberOfRolls = 3;
     numberOfRounds = 13;
     updateRolls();
-    rollBtn.addEventListener('click', function() {rollDice()});
+    enableRollBtn();
     tableBody.addEventListener('click', function(event) {endTurn(event)});
     allDice.addEventListener('click', function(event) {toggleDice(event)});
-    rulesBtn.addEventListener('click', function() {displayRules()});
+    rulesBtn.addEventListener('click', displayRules);
 }
 
 /**
@@ -319,11 +328,15 @@ function rollDice() {
                 continue;
             } else {
                 diceArray[dice].value = Math.floor(Math.random() * 6) + 1;
-                document.getElementById('dice').children[dice].src = `assets/images/dice-${diceArray[dice].value}.png` ;
+                document.getElementById('dice').children[dice].src = `assets/images/dice-${diceArray[dice].value}.png`;
+                document.getElementById('dice').children[dice].alt = `A dice showing the number ${diceArray[dice].value}`;
             }
         }
         numberOfRolls = numberOfRolls - 1;
         updateRolls();
+        if (numberOfRolls === 0) {
+            disableRollBtn();
+        }
     } else {
         alert('No rolls left. Please pick a field to enter your score');
     }
@@ -336,7 +349,9 @@ function rollDice() {
 function endTurn() {
     console.log(`Ending turn... ${numberOfRounds} rounds left`)
     let scoresheetField = this.event.srcElement;
-    if (numberOfRolls < 3) {
+    if (numberOfRolls === 3) {
+        alert('You need to roll the dice to start the round.');
+    } else if (numberOfRolls < 3) {
         if (scoresheetField.classList.length === 0) {
             if (scoresheetField.nextElementSibling.textContent !== '') {
                 alert('Field already filled, pick another field');
@@ -360,8 +375,6 @@ function endTurn() {
         } else {
             throw "You cannot enter your score here";
         }
-    } else if (numberOfRolls === 3) {
-        alert('You need to roll the dice to start the round.');
     }
     if (numberOfRounds === 0) {
         endGame();
@@ -420,6 +433,69 @@ function findNumber(number) {
     return containsNumber;
 }
 
+// Removes Event Listener for Roll Button and removes class 'active'
+function disableRollBtn() {
+    rollBtn.classList = "btn inactive";
+    rollBtn.removeEventListener('click', rollDice);
+    rollBtn.textContent = "Pick A Score";
+}
+
+/**
+ * Adds Event Listener for Roll Button and adds class 'active'
+*/ 
+function enableRollBtn() {
+    rollBtn.classList = "btn active";
+    rollBtn.addEventListener('click', rollDice);
+    rollBtn.textContent = "Roll Dice";
+}
+
+/**
+ * Changes player name
+ */
+function changePlayerName() {
+    console.log('Changing player name...');
+    let newName = prompt('Please enter your name. If you do not want to pick a name now, the computer will assign a random name.\n\nYou can change the name any time by clicking on the name.');
+    if (newName !== '' && newName !== null) {
+        playerNameDisplay.textContent = newName;
+        localStorage.setItem('playerName', newName);
+        return newName;
+    } else {
+        getRandomName();
+        setTimeout(function() {
+            console.log(`Player did not choose a name, generated random name ${randomName}`);
+            playerNameDisplay.textContent = randomName;
+            return randomName;
+        }, 500);
+    }
+}
+
+/**
+ * Gets the player name if one is saved to local storage
+ */
+function getPlayerName() {
+    let savedPlayerName = localStorage.getItem('playerName');
+    let newPlayerName;
+    if (savedPlayerName !== '' && savedPlayerName !== null) {
+        newPlayerName = savedPlayerName;
+        playerNameDisplay.textContent = newPlayerName;
+    } else {
+        changePlayerName();
+    }
+}
+
+/**
+ * Gets a random name from a name generator API and returns it
+ */
+async function getRandomName() {
+    // API call for random name
+    const url = `https://api.parser.name/?api_key=${apiKey}&endpoint=generate&country-code='UK'`
+    const response = await fetch(url);
+    const jsonData = await response.json();
+    randomName = jsonData.data[0]['name']['firstname']['name'];
+    // console.log(randomName);
+    return randomName;
+}
+
 /**
 * Displays a rules popup
 */ 
@@ -428,11 +504,11 @@ function displayRules() {
     rulesArea.style = "display: block";
     gameArea.style = "display: none";
     scoresheetArea.style = "display: none";
-    rulesBtn.style = "display: none";
+    footer.style = "display: none";
     hideRulesBtn.addEventListener('click', function() {
         rulesArea.style = "display: none";
         gameArea.style = "";
         scoresheetArea.style = "";
-        rulesBtn.style = "";
+        footer.style = "";
     })
 }
