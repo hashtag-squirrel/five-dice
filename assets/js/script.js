@@ -14,10 +14,6 @@ const diceThree = document.getElementById('dice').children[2];
 const diceFour = document.getElementById('dice').children[3];
 const diceFive = document.getElementById('dice').children[4];
 
-// Constants from rules area
-const rulesArea = document.getElementById('rules-area');
-const hideRulesBtn = document.getElementById('hide-rules-btn');
-
 // Constants from scoresheet area
 const scoresheetArea = document.getElementById('scoresheet-area');
 const tableBody = document.getElementsByTagName('tbody')[0];
@@ -39,9 +35,18 @@ const chance = document.getElementById('chance').children[1];
 
 const totalScoreDisplay = document.getElementById('score');
 
+// Constants from rules area
+const rulesArea = document.getElementById('rules-area');
+const hideRulesBtn = document.getElementById('hide-rules-btn');
+
+// Constants from highscores area
+const highscoresArea = document.getElementById('highscores-area');
+const hideHighscoresBtn = document.getElementById('hide-highscores-btn');
+
 // Constants from footer
 const footer = document.getElementsByTagName('footer')[0];
 const rulesBtn = document.getElementById('rules');
+const highscoresBtn = document.getElementById('highscores-btn');
 
 // Declaring variables
 let diceArray = [
@@ -96,6 +101,7 @@ function runGame() {
     tableBody.addEventListener('click', function(event) {endTurn(event)});
     allDice.addEventListener('click', function(event) {toggleDice(event)});
     rulesBtn.addEventListener('click', displayRules);
+    highscoresBtn.addEventListener('click', displayHighscores);
 }
 
 /**
@@ -497,7 +503,7 @@ async function getRandomName() {
 }
 
 /**
-* Displays a rules popup
+* Displays rules
 */ 
 function displayRules() {
     console.log("Displaying rules...");
@@ -507,6 +513,23 @@ function displayRules() {
     footer.style = "display: none";
     hideRulesBtn.addEventListener('click', function() {
         rulesArea.style = "display: none";
+        gameArea.style = "";
+        scoresheetArea.style = "";
+        footer.style = "";
+    })
+}
+
+/**
+* Displays highscores
+*/ 
+function displayHighscores() {
+    console.log("Displaying highscores...");
+    highscoresArea.style = "display: block";
+    gameArea.style = "display: none";
+    scoresheetArea.style = "display: none";
+    footer.style = "display: none";
+    hideHighscoresBtn.addEventListener('click', function() {
+        highscoresArea.style = "display: none";
         gameArea.style = "";
         scoresheetArea.style = "";
         footer.style = "";
