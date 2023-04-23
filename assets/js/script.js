@@ -38,6 +38,7 @@ const chance = document.getElementById('chance').children[1];
 const totalScoreDisplay = document.getElementById('score');
 
 // Constants from footer
+const footer = document.getElementsByTagName('footer')[0];
 const rulesBtn = document.getElementById('rules');
 
 // Declaring variables
@@ -467,11 +468,11 @@ function displayRules() {
     rulesArea.style = "display: block";
     gameArea.style = "display: none";
     scoresheetArea.style = "display: none";
-    rulesBtn.style = "display: none";
+    footer.style = "display: none";
     hideRulesBtn.addEventListener('click', function() {
         rulesArea.style = "display: none";
         gameArea.style = "";
         scoresheetArea.style = "";
-        rulesBtn.style = "";
+        footer.style = "";
     })
 }
