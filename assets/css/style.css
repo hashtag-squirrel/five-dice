@@ -149,7 +149,6 @@ main {
 #highscores {
     margin-top: 30px;
     border: transparent;
-    /* table-layout: fixed; */
     width: 100%;
     height: 600px;
     font-size: 150%;

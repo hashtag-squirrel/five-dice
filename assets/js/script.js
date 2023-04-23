@@ -42,6 +42,7 @@ const hideRulesBtn = document.getElementById('hide-rules-btn');
 // Constants from highscores area
 const highscoresArea = document.getElementById('highscores-area');
 const hideHighscoresBtn = document.getElementById('hide-highscores-btn');
+const highscoresBody = document.getElementById('highscores-body');
 
 // Constants from footer
 const footer = document.getElementsByTagName('footer')[0];
@@ -71,6 +72,48 @@ let diceArray = [
         state: 'unlocked',
     },
 ];
+let highscoresArray = [
+    {
+        name: 'Test',
+        score: 123,
+    },
+    {
+        name: 'Test',
+        score: 123,
+    },
+    {
+        name: 'Test',
+        score: 123,
+    },
+    {
+        name: 'Test',
+        score: 123,
+    },
+    {
+        name: 'Test',
+        score: 123,
+    },
+    {
+        name: 'Test',
+        score: 123,
+    },
+    {
+        name: 'Test',
+        score: 123,
+    },
+    {
+        name: 'Test',
+        score: 123,
+    },
+    {
+        name: 'Test',
+        score: 123,
+    },
+    {
+        name: 'Test',
+        score: 123,
+    }
+];
 let totalScore;
 let numberOfRolls;
 let numberOfRounds;
@@ -79,9 +122,7 @@ let randomName;
 
 // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
-    getRandomName();
     setTimeout(getPlayerName, 300);
-    playerName = playerNameDisplay.addEventListener('click', changePlayerName);
     runGame();
 })
 
@@ -116,6 +157,7 @@ function endGame() {
             alert("See you next time!");
         }
     }, 1000);
+    addHighscore();
 }
 
 /**
@@ -135,42 +177,42 @@ function calculateFieldScore(fieldId, field) {
     if (field.textContent === '') {
         switch (fieldId) {
             case 'ones':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 1) {
                         score = score + diceArray[i].value;
                     }
                 }
                 break;
             case 'twos':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 2) {
                         score = score + diceArray[i].value;
                     }
                 }
                 break;
             case 'threes':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 3) {
                         score = score + diceArray[i].value;
                     }
                 }
                 break;
             case 'fours':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 4) {
                         score = score + diceArray[i].value;
                     }
                 }
                 break;
             case 'fives':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 5) {
                         score = score + diceArray[i].value;
                     }
                 }
                 break;
             case 'sixes':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 6) {
                         score = score + diceArray[i].value;
                     }
@@ -181,7 +223,7 @@ function calculateFieldScore(fieldId, field) {
                     Object.values(findDuplicates()).includes(4) ||
                     Object.values(findDuplicates()).includes(5)
                 ) {
-                    for (i = 0; i < diceArray.length; i++) {
+                    for (let i = 0; i < diceArray.length; i++) {
                         score = score + diceArray[i].value;
                     }
                 } else {
@@ -192,7 +234,7 @@ function calculateFieldScore(fieldId, field) {
                 if (Object.values(findDuplicates()).includes(4) ||
                     Object.values(findDuplicates()).includes(5)
                 ) {
-                    for (i = 0; i < diceArray.length; i++) {
+                    for (let i = 0; i < diceArray.length; i++) {
                         score = score + diceArray[i].value;
                     }
                 } else {
@@ -236,7 +278,7 @@ function calculateFieldScore(fieldId, field) {
                 }
                 break;
             case 'chance':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     score = score + diceArray[i].value;
                 }
                 break;
@@ -261,7 +303,8 @@ function calculateTotalScore(fieldScore) {
 */
 function toggleDice(event) {   
     console.log("Toggling dice...");
-    let clickedDice = this.event.srcElement;
+    console.log(event);
+    let clickedDice = event.srcElement;
     let diceId = clickedDice.id;
     let diceClassList = clickedDice.classList;   
     if (diceClassList.length === 0) {
@@ -320,6 +363,7 @@ function unlockAllDice() {
             continue;
         }
     }
+    enableRollBtn();
 }
 
 /**
@@ -352,9 +396,9 @@ function rollDice() {
 /**
 * Lets the player pick a field for the turn and ends the turn
 */
-function endTurn() {
+function endTurn(event) {
     console.log(`Ending turn... ${numberOfRounds} rounds left`)
-    let scoresheetField = this.event.srcElement;
+    let scoresheetField = event.srcElement;
     if (numberOfRolls === 3) {
         alert('You need to roll the dice to start the round.');
     } else if (numberOfRolls < 3) {
@@ -470,6 +514,7 @@ function changePlayerName() {
         setTimeout(function() {
             console.log(`Player did not choose a name, generated random name ${randomName}`);
             playerNameDisplay.textContent = randomName;
+            playerName = randomName;
             return randomName;
         }, 500);
     }
@@ -480,10 +525,10 @@ function changePlayerName() {
  */
 function getPlayerName() {
     let savedPlayerName = localStorage.getItem('playerName');
-    let newPlayerName;
     if (savedPlayerName !== '' && savedPlayerName !== null) {
-        newPlayerName = savedPlayerName;
-        playerNameDisplay.textContent = newPlayerName;
+        playerName = savedPlayerName;
+        playerNameDisplay.textContent = playerName;
+        return playerName;
     } else {
         changePlayerName();
     }
@@ -534,4 +579,29 @@ function displayHighscores() {
         scoresheetArea.style = "";
         footer.style = "";
     })
+}
+
+/**
+ * Adds score to highscores
+ */
+function addHighscore() {
+    console.log('Adding highscores...');
+    console.log(playerName);
+    let highscore = {
+        name: playerName,
+        score: totalScore
+    }
+    for (let i = 0; i < highscoresArray.length; i++) {
+        if (totalScore >= highscoresArray[i].score) {
+            highscoresArray.splice(i, 0, highscore);
+            highscoresArray.pop();
+            highscoresBody.children[i].children[2].textContent = totalScore;
+            highscoresBody.children[i].children[1].textContent = playerName;
+            break;
+        } else if (totalScore < highscoresArray[i]) {
+            continue;
+        } else {
+            console.log('I dont even know what is happening.');
+        }
+    }
 }
