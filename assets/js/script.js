@@ -328,7 +328,8 @@ function rollDice() {
                 continue;
             } else {
                 diceArray[dice].value = Math.floor(Math.random() * 6) + 1;
-                document.getElementById('dice').children[dice].src = `assets/images/dice-${diceArray[dice].value}.png` ;
+                document.getElementById('dice').children[dice].src = `assets/images/dice-${diceArray[dice].value}.png`;
+                document.getElementById('dice').children[dice].alt = `A dice showing the number ${diceArray[dice].value}`;
             }
         }
         numberOfRolls = numberOfRolls - 1;
@@ -465,9 +466,7 @@ function changePlayerName() {
             playerNameDisplay.textContent = randomName;
             return randomName;
         }, 500);
-        
     }
-    
 }
 
 /**
