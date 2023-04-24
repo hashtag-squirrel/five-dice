@@ -14,10 +14,6 @@ const diceThree = document.getElementById('dice').children[2];
 const diceFour = document.getElementById('dice').children[3];
 const diceFive = document.getElementById('dice').children[4];
 
-// Constants from rules area
-const rulesArea = document.getElementById('rules-area');
-const hideRulesBtn = document.getElementById('hide-rules-btn');
-
 // Constants from scoresheet area
 const scoresheetArea = document.getElementById('scoresheet-area');
 const tableBody = document.getElementsByTagName('tbody')[0];
@@ -39,11 +35,21 @@ const chance = document.getElementById('chance').children[1];
 
 const totalScoreDisplay = document.getElementById('score');
 
+// Constants from rules area
+const rulesArea = document.getElementById('rules-area');
+const hideRulesBtn = document.getElementById('hide-rules-btn');
+
+// Constants from highscores area
+const highscoresArea = document.getElementById('highscores-area');
+const hideHighscoresBtn = document.getElementById('hide-highscores-btn');
+const highscoresBody = document.getElementById('highscores-body');
+
 // Constants from footer
 const footer = document.getElementsByTagName('footer')[0];
 const rulesBtn = document.getElementById('rules');
+const highscoresBtn = document.getElementById('highscores-btn');
 
-// Declaring variables
+// Declaring global variables
 let diceArray = [
     {
         value: 0,
@@ -66,6 +72,48 @@ let diceArray = [
         state: 'unlocked',
     },
 ];
+let highscoresArray = [
+    {
+        name: 'Can',
+        score: 200,
+    },
+    {
+        name: 'You',
+        score: 180,
+    },
+    {
+        name: 'Beat',
+        score: 160,
+    },
+    {
+        name: 'These',
+        score: 140,
+    },
+    {
+        name: 'Scores',
+        score: 120,
+    },
+    {
+        name: 'That',
+        score: 100,
+    },
+    {
+        name: 'Are',
+        score: 80,
+    },
+    {
+        name: 'Hard',
+        score: 60,
+    },
+    {
+        name: 'Coded',
+        score: 40,
+    },
+    {
+        name: 'Here',
+        score: 20,
+    }
+];
 let totalScore;
 let numberOfRolls;
 let numberOfRounds;
@@ -74,9 +122,10 @@ let randomName;
 
 // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
-    getRandomName();
+    setHighscores();
     setTimeout(getPlayerName, 300);
-    playerName = playerNameDisplay.addEventListener('click', changePlayerName);
+    setTimeout(getHighscores, 300);
+    buildHighscoreTable();
     runGame();
 })
 
@@ -96,6 +145,7 @@ function runGame() {
     tableBody.addEventListener('click', function(event) {endTurn(event)});
     allDice.addEventListener('click', function(event) {toggleDice(event)});
     rulesBtn.addEventListener('click', displayRules);
+    highscoresBtn.addEventListener('click', displayHighscores);
 }
 
 /**
@@ -110,6 +160,7 @@ function endGame() {
             alert("See you next time!");
         }
     }, 1000);
+    addHighscore();
 }
 
 /**
@@ -129,42 +180,42 @@ function calculateFieldScore(fieldId, field) {
     if (field.textContent === '') {
         switch (fieldId) {
             case 'ones':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 1) {
                         score = score + diceArray[i].value;
                     }
                 }
                 break;
             case 'twos':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 2) {
                         score = score + diceArray[i].value;
                     }
                 }
                 break;
             case 'threes':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 3) {
                         score = score + diceArray[i].value;
                     }
                 }
                 break;
             case 'fours':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 4) {
                         score = score + diceArray[i].value;
                     }
                 }
                 break;
             case 'fives':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 5) {
                         score = score + diceArray[i].value;
                     }
                 }
                 break;
             case 'sixes':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     if (diceArray[i].value === 6) {
                         score = score + diceArray[i].value;
                     }
@@ -175,7 +226,7 @@ function calculateFieldScore(fieldId, field) {
                     Object.values(findDuplicates()).includes(4) ||
                     Object.values(findDuplicates()).includes(5)
                 ) {
-                    for (i = 0; i < diceArray.length; i++) {
+                    for (let i = 0; i < diceArray.length; i++) {
                         score = score + diceArray[i].value;
                     }
                 } else {
@@ -186,7 +237,7 @@ function calculateFieldScore(fieldId, field) {
                 if (Object.values(findDuplicates()).includes(4) ||
                     Object.values(findDuplicates()).includes(5)
                 ) {
-                    for (i = 0; i < diceArray.length; i++) {
+                    for (let i = 0; i < diceArray.length; i++) {
                         score = score + diceArray[i].value;
                     }
                 } else {
@@ -230,7 +281,7 @@ function calculateFieldScore(fieldId, field) {
                 }
                 break;
             case 'chance':
-                for (i = 0; i < diceArray.length; i++) {
+                for (let i = 0; i < diceArray.length; i++) {
                     score = score + diceArray[i].value;
                 }
                 break;
@@ -255,7 +306,8 @@ function calculateTotalScore(fieldScore) {
 */
 function toggleDice(event) {   
     console.log("Toggling dice...");
-    let clickedDice = this.event.srcElement;
+    console.log(event);
+    let clickedDice = event.srcElement;
     let diceId = clickedDice.id;
     let diceClassList = clickedDice.classList;   
     if (diceClassList.length === 0) {
@@ -314,6 +366,7 @@ function unlockAllDice() {
             continue;
         }
     }
+    enableRollBtn();
 }
 
 /**
@@ -346,9 +399,9 @@ function rollDice() {
 /**
 * Lets the player pick a field for the turn and ends the turn
 */
-function endTurn() {
+function endTurn(event) {
     console.log(`Ending turn... ${numberOfRounds} rounds left`)
-    let scoresheetField = this.event.srcElement;
+    let scoresheetField = event.srcElement;
     if (numberOfRolls === 3) {
         alert('You need to roll the dice to start the round.');
     } else if (numberOfRolls < 3) {
@@ -464,6 +517,7 @@ function changePlayerName() {
         setTimeout(function() {
             console.log(`Player did not choose a name, generated random name ${randomName}`);
             playerNameDisplay.textContent = randomName;
+            playerName = randomName;
             return randomName;
         }, 500);
     }
@@ -474,10 +528,10 @@ function changePlayerName() {
  */
 function getPlayerName() {
     let savedPlayerName = localStorage.getItem('playerName');
-    let newPlayerName;
     if (savedPlayerName !== '' && savedPlayerName !== null) {
-        newPlayerName = savedPlayerName;
-        playerNameDisplay.textContent = newPlayerName;
+        playerName = savedPlayerName;
+        playerNameDisplay.textContent = playerName;
+        return playerName;
     } else {
         changePlayerName();
     }
@@ -497,7 +551,7 @@ async function getRandomName() {
 }
 
 /**
-* Displays a rules popup
+* Displays rules
 */ 
 function displayRules() {
     console.log("Displaying rules...");
@@ -511,4 +565,70 @@ function displayRules() {
         scoresheetArea.style = "";
         footer.style = "";
     })
+}
+
+/**
+* Displays highscores
+*/ 
+function displayHighscores() {
+    console.log("Displaying highscores...");
+    highscoresArea.style = "display: block";
+    gameArea.style = "display: none";
+    scoresheetArea.style = "display: none";
+    footer.style = "display: none";
+    hideHighscoresBtn.addEventListener('click', function() {
+        highscoresArea.style = "display: none";
+        gameArea.style = "";
+        scoresheetArea.style = "";
+        footer.style = "";
+    })
+}
+
+/**
+ * Adds score to highscores
+ */
+function addHighscore() {
+    console.log('Adding highscores...');
+    console.log(playerName);
+    let highscore = {
+        name: playerName,
+        score: totalScore
+    }
+    for (let i = 0; i < highscoresArray.length; i++) {
+        if (totalScore >= highscoresArray[i].score) {
+            highscoresArray.splice(i, 0, highscore);
+            highscoresArray.pop();
+            buildHighscoreTable();
+            setHighscores();
+            break;
+        } else if (totalScore < highscoresArray[i]) {
+            continue;
+        } else {
+            console.log('I dont even know what is happening.');
+        }
+    }
+}
+
+/**
+ * Fills highscores table with scores stored in highscoresArray
+ */
+function buildHighscoreTable() {
+    for (let i = 0; i < highscoresArray.length; i++) {
+        highscoresBody.children[i].children[1].textContent = highscoresArray[i].name;
+        highscoresBody.children[i].children[2].textContent = highscoresArray[i].score;
+    }
+}
+
+/**
+ * Gets highscores from localStorage
+ */
+function getHighscores() {
+    JSON.parse(localStorage.getItem('highscores'));
+}
+
+/**
+ * Saves highscores in localStorage
+ */
+function setHighscores() {
+    localStorage.setItem('highscores', JSON.stringify(highscoresArray));
 }
