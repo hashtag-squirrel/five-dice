@@ -217,7 +217,8 @@ You can break the credits section up into Content and Media, depending on what y
 
 - Articles referred to in depth: 
     - [Fetch API Documentation](https://www.w3schools.com/jsref/api_fetch.asp)
-    - [Local Storage Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+    - [localStorage Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+    - [Set and Get objects/array in localStorage](https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage)
 
 ### Media
 <span style="color:red">WIP</span>

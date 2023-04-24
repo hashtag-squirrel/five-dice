@@ -122,7 +122,10 @@ let randomName;
 
 // Wait for the DOM to finish loading before running the game
 document.addEventListener('DOMContentLoaded', function() {
+    setHighscores();
     setTimeout(getPlayerName, 300);
+    setTimeout(getHighscores, 300);
+    buildHighscoreTable();
     runGame();
 })
 
@@ -596,6 +599,7 @@ function addHighscore() {
             highscoresArray.splice(i, 0, highscore);
             highscoresArray.pop();
             buildHighscoreTable();
+            localStorage.setItem('highscores', highscoresArray);
             break;
         } else if (totalScore < highscoresArray[i]) {
             continue;
@@ -605,9 +609,26 @@ function addHighscore() {
     }
 }
 
+/**
+ * Fills highscores table with scores stored in highscoresArray
+ */
 function buildHighscoreTable() {
     for (let i = 0; i < highscoresArray.length; i++) {
         highscoresBody.children[i].children[1].textContent = highscoresArray[i].name;
         highscoresBody.children[i].children[2].textContent = highscoresArray[i].score;
     }
+}
+
+/**
+ * Gets highscores from localStorage
+ */
+function getHighscores() {
+    JSON.parse(localStorage.getItem('highscores'));
+}
+
+/**
+ * Saves highscores in localStorage
+ */
+function setHighscores() {
+    localStorage.setItem('highscores', JSON.stringify(highscoresArray));
 }
