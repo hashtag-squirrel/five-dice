@@ -49,7 +49,7 @@ const footer = document.getElementsByTagName('footer')[0];
 const rulesBtn = document.getElementById('rules');
 const highscoresBtn = document.getElementById('highscores-btn');
 
-// Declaring variables
+// Declaring global variables
 let diceArray = [
     {
         value: 0,
@@ -599,7 +599,7 @@ function addHighscore() {
             highscoresArray.splice(i, 0, highscore);
             highscoresArray.pop();
             buildHighscoreTable();
-            localStorage.setItem('highscores', highscoresArray);
+            setHighscores();
             break;
         } else if (totalScore < highscoresArray[i]) {
             continue;
