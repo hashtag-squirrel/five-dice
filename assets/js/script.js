@@ -1,5 +1,3 @@
-import { apiKey } from './credentials.js';
-
 // Declaring constants
 // Constants from game area
 const numberOfRollsSpan = document.getElementById('number-of-rolls');
