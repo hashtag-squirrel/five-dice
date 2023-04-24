@@ -74,44 +74,44 @@ let diceArray = [
 ];
 let highscoresArray = [
     {
-        name: 'Test',
-        score: 123,
+        name: 'Can',
+        score: 200,
     },
     {
-        name: 'Test',
-        score: 123,
+        name: 'You',
+        score: 180,
     },
     {
-        name: 'Test',
-        score: 123,
+        name: 'Beat',
+        score: 160,
     },
     {
-        name: 'Test',
-        score: 123,
+        name: 'These',
+        score: 140,
     },
     {
-        name: 'Test',
-        score: 123,
+        name: 'Scores',
+        score: 120,
     },
     {
-        name: 'Test',
-        score: 123,
+        name: 'That',
+        score: 100,
     },
     {
-        name: 'Test',
-        score: 123,
+        name: 'Are',
+        score: 80,
     },
     {
-        name: 'Test',
-        score: 123,
+        name: 'Hard',
+        score: 60,
     },
     {
-        name: 'Test',
-        score: 123,
+        name: 'Coded',
+        score: 40,
     },
     {
-        name: 'Test',
-        score: 123,
+        name: 'Here',
+        score: 20,
     }
 ];
 let totalScore;
@@ -595,13 +595,19 @@ function addHighscore() {
         if (totalScore >= highscoresArray[i].score) {
             highscoresArray.splice(i, 0, highscore);
             highscoresArray.pop();
-            highscoresBody.children[i].children[2].textContent = totalScore;
-            highscoresBody.children[i].children[1].textContent = playerName;
+            buildHighscoreTable();
             break;
         } else if (totalScore < highscoresArray[i]) {
             continue;
         } else {
             console.log('I dont even know what is happening.');
         }
+    }
+}
+
+function buildHighscoreTable() {
+    for (let i = 0; i < highscoresArray.length; i++) {
+        highscoresBody.children[i].children[1].textContent = highscoresArray[i].name;
+        highscoresBody.children[i].children[2].textContent = highscoresArray[i].score;
     }
 }
