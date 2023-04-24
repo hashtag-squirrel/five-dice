@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(getPlayerName, 300);
     setTimeout(getHighscores, 300);
     buildHighscoreTable();
+    playerName = playerNameDisplay.addEventListener('click', changePlayerName);
     runGame();
 })
 
@@ -542,11 +543,11 @@ function getPlayerName() {
  */
 async function getRandomName() {
     // API call for random name
-    const url = `https://api.parser.name/?api_key=${apiKey}&endpoint=generate&country-code='UK'`
+    const url = `https://randomuser.me/api/`
     const response = await fetch(url);
     const jsonData = await response.json();
-    randomName = jsonData.data[0]['name']['firstname']['name'];
-    // console.log(randomName);
+    randomName = jsonData.results[0].name.first;
+    console.log(randomName);
     return randomName;
 }
 
