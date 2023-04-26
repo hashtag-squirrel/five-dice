@@ -574,6 +574,7 @@ function displayRules() {
     gameArea.style = "display: none";
     scoresheetArea.style = "display: none";
     footer.style = "display: none";
+    hintArea.style = "display: none";
     hideRulesBtn.addEventListener('click', function() {
         rulesArea.style = "display: none";
         gameArea.style = "";
@@ -600,7 +601,8 @@ function displayHighscores() {
 }
 
 /**
- * Displays hint after last roll of first round
+ * Displays hint after last roll of first round, 
+ * will not be displayed again if player clicks on rules or highscores
  */
 function displayHint(bool, hintType) {
     switch (hintType) {
