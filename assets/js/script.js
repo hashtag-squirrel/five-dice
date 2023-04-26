@@ -42,6 +42,11 @@ const highscoresArea = document.getElementById('highscores-area');
 const hideHighscoresBtn = document.getElementById('hide-highscores-btn');
 const highscoresBody = document.getElementById('highscores-body');
 
+// Constants from hint area
+const hintArea = document.getElementById('hint-area');
+const tableHint = document.getElementById('table-hint');
+const lockHint = document.getElementById('lock-hint');
+
 // Constants from footer
 const footer = document.getElementsByTagName('footer')[0];
 const rulesBtn = document.getElementById('rules');
@@ -139,6 +144,7 @@ function runGame() {
     totalScore = 0;
     numberOfRolls = 3;
     numberOfRounds = 13;
+    displayHint(true, 'lockHint');
     updateRolls();
     enableRollBtn();
     tableBody.addEventListener('click', function(event) {endTurn(event)});
@@ -393,6 +399,10 @@ function rollDice() {
         updateRolls();
         if (numberOfRolls === 0) {
             disableRollBtn();
+            if (numberOfRounds === 13) {
+                displayHint(false, 'lockHint');
+                displayHint(true, 'tableHint');
+            }
         }
     } else {
         alert('No rolls left. Please pick a field to enter your score');
@@ -405,6 +415,7 @@ function rollDice() {
 */
 function endTurn(event) {
     console.log(`Ending turn... ${numberOfRounds} rounds left`)
+    displayHint(false, 'tableHint');
     let scoresheetField = event.srcElement;
     if (numberOfRolls === 3) {
         alert('You need to roll the dice to start the round.');
@@ -586,6 +597,28 @@ function displayHighscores() {
         scoresheetArea.style = "";
         footer.style = "";
     })
+}
+
+/**
+ * Displays hint after last roll of first round
+ */
+function displayHint(bool, hintType) {
+    switch (hintType) {
+        case 'tableHint':
+            if (bool === true) {
+                tableHint.style = "";
+            } else {
+                tableHint.style = "display: none";
+            }
+            break;
+        case 'lockHint':
+            if (bool === true) {
+                lockHint.style = "";
+            } else {
+                lockHint.style = "display: none";
+            }
+            break;
+    }
 }
 
 /**

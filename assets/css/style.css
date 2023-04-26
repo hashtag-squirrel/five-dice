@@ -44,8 +44,12 @@ main {
     background-color: var(--light-color);
 }
 
-/* Game Area section */
+/* Game and Hint Area Sections */
+#game-and-hint-area {
+    flex-direction: column;
+}
 
+/* Game Area section */
 #game-area {
     border: 5px solid;
     border-radius: 50%;
@@ -89,6 +93,12 @@ main {
 
 #roll-button.inactive:hover {
     background-color: var(--tertiary-color);
+}
+
+/* Hint section */
+#hint-area {
+    max-width: 300px;
+    margin-top: 30px;
 }
 
 /* Scoresheet section */
