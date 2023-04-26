@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Kalam:wght@400;700&family=Roboto:wght@100&display=swap');
 
 /* General styling for the whole page */
 
@@ -19,8 +19,8 @@
 }
 
 body {
-    font-family: 'Amatic SC', sans-serif;
-    font-size: 150%;
+    font-family: 'Kalam', sans-serif;
+    font-size: 115%;
     text-align: center;
     background-color: var(--primary-color);
 }
@@ -44,8 +44,12 @@ main {
     background-color: var(--light-color);
 }
 
-/* Game Area section */
+/* Game and Hint Area Sections */
+#game-and-hint-area {
+    flex-direction: column;
+}
 
+/* Game Area section */
 #game-area {
     border: 5px solid;
     border-radius: 50%;
@@ -76,7 +80,7 @@ main {
 }
 
 #roll-button {
-    width: 125px;
+    width: 140px;
 }
 
 #roll-button.active {
@@ -89,6 +93,12 @@ main {
 
 #roll-button.inactive:hover {
     background-color: var(--tertiary-color);
+}
+
+/* Hint section */
+#hint-area {
+    max-width: 300px;
+    margin-top: 30px;
 }
 
 /* Scoresheet section */
@@ -136,10 +146,14 @@ main {
     background-color: var(--primary-color);
     color: var(--light-color);
     padding: 30px;
+    width: 100%;
 }
 
 #rules-area p {
     margin-bottom: 30px;
+    width: 100%;
+    max-width: 600px;
+    margin: 30px auto;
 }
 
 #highscores-area {
@@ -174,13 +188,13 @@ footer {
 
 /* Button styles */
 .btn {
-    font-family: 'Amatic SC', sans-serif;
+    font-family: 'Kalam', sans-serif;
     border: 3px solid;
     border-radius: 10px;
     font-size: 115%;
     padding: 0 10px 0 10px;
     background-color: var(--light-color);
-    margin: 30px;
+    margin: 15px;
 }
 
 .btn:hover {

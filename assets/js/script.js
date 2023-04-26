@@ -42,6 +42,11 @@ const highscoresArea = document.getElementById('highscores-area');
 const hideHighscoresBtn = document.getElementById('hide-highscores-btn');
 const highscoresBody = document.getElementById('highscores-body');
 
+// Constants from hint area
+const hintArea = document.getElementById('hint-area');
+const tableHint = document.getElementById('table-hint');
+const lockHint = document.getElementById('lock-hint');
+
 // Constants from footer
 const footer = document.getElementsByTagName('footer')[0];
 const rulesBtn = document.getElementById('rules');
@@ -139,6 +144,7 @@ function runGame() {
     totalScore = 0;
     numberOfRolls = 3;
     numberOfRounds = 13;
+    displayHint(true, 'lockHint');
     updateRolls();
     enableRollBtn();
     tableBody.addEventListener('click', function(event) {endTurn(event)});
@@ -309,47 +315,52 @@ function toggleDice(event) {
     let clickedDice = event.srcElement;
     let diceId = clickedDice.id;
     let diceClassList = clickedDice.classList;   
-    if (diceClassList.length === 0) {
-        // lock
-        diceClassList.add("locked");
-        switch (diceId) {
-            case 'dice-one':
-                diceArray[0].state = 'locked';
-                break;
-            case 'dice-two':
-                diceArray[1].state = 'locked';
-                break;
-            case 'dice-three':
-                diceArray[2].state = 'locked';
-                break;
-            case 'dice-four':
-                diceArray[3].state = 'locked';
-                break;
-            case 'dice-five':
-                diceArray[4].state = 'locked';
-                break;
-        }
+    if (numberOfRolls === 3) {
+        alert('You need to roll before you can lock any dice.');
     } else {
-        // unlock
-        diceClassList.remove('locked');
-        switch (diceId) {
-            case 'dice-one':
-                diceArray[0].state = '';
-                break;
-            case 'dice-two':
-                diceArray[1].state = '';
-                break;
-            case 'dice-three':
-                diceArray[2].state = '';
-                break;
-            case 'dice-four':
-                diceArray[3].state = '';
-                break;
-            case 'dice-five':
-                diceArray[4].state = '';
-                break;
+        if (diceClassList.length === 0) {
+            // lock
+            diceClassList.add("locked");
+            switch (diceId) {
+                case 'dice-one':
+                    diceArray[0].state = 'locked';
+                    break;
+                case 'dice-two':
+                    diceArray[1].state = 'locked';
+                    break;
+                case 'dice-three':
+                    diceArray[2].state = 'locked';
+                    break;
+                case 'dice-four':
+                    diceArray[3].state = 'locked';
+                    break;
+                case 'dice-five':
+                    diceArray[4].state = 'locked';
+                    break;
+            }
+        } else {
+            // unlock
+            diceClassList.remove('locked');
+            switch (diceId) {
+                case 'dice-one':
+                    diceArray[0].state = '';
+                    break;
+                case 'dice-two':
+                    diceArray[1].state = '';
+                    break;
+                case 'dice-three':
+                    diceArray[2].state = '';
+                    break;
+                case 'dice-four':
+                    diceArray[3].state = '';
+                    break;
+                case 'dice-five':
+                    diceArray[4].state = '';
+                    break;
+            }
         }
     }
+    
 }
 
 /**
@@ -388,6 +399,10 @@ function rollDice() {
         updateRolls();
         if (numberOfRolls === 0) {
             disableRollBtn();
+            if (numberOfRounds === 13) {
+                displayHint(false, 'lockHint');
+                displayHint(true, 'tableHint');
+            }
         }
     } else {
         alert('No rolls left. Please pick a field to enter your score');
@@ -400,6 +415,7 @@ function rollDice() {
 */
 function endTurn(event) {
     console.log(`Ending turn... ${numberOfRounds} rounds left`)
+    displayHint(false, 'tableHint');
     let scoresheetField = event.srcElement;
     if (numberOfRolls === 3) {
         alert('You need to roll the dice to start the round.');
@@ -558,6 +574,7 @@ function displayRules() {
     gameArea.style = "display: none";
     scoresheetArea.style = "display: none";
     footer.style = "display: none";
+    hintArea.style = "display: none";
     hideRulesBtn.addEventListener('click', function() {
         rulesArea.style = "display: none";
         gameArea.style = "";
@@ -581,6 +598,29 @@ function displayHighscores() {
         scoresheetArea.style = "";
         footer.style = "";
     })
+}
+
+/**
+ * Displays hint after last roll of first round, 
+ * will not be displayed again if player clicks on rules or highscores
+ */
+function displayHint(bool, hintType) {
+    switch (hintType) {
+        case 'tableHint':
+            if (bool === true) {
+                tableHint.style = "";
+            } else {
+                tableHint.style = "display: none";
+            }
+            break;
+        case 'lockHint':
+            if (bool === true) {
+                lockHint.style = "";
+            } else {
+                lockHint.style = "display: none";
+            }
+            break;
+    }
 }
 
 /**

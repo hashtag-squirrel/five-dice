@@ -19,22 +19,36 @@
 
     <!-- Main -->
     <main>
-        <!-- Game Section for the dice -->
-        <section id="game-area">
-            <div id="rolls">
-                <span id="number-of-rolls">3</span> Rolls left
-            </div>
-            <div id="dice">
-                <img id="dice-one" src="assets/images/dice-6.png" alt="A dice showing the number 6">
-                <img id="dice-two" src="assets/images/dice-6.png" alt="A dice showing the number 6">
-                <img id="dice-three" src="assets/images/dice-6.png" alt="A dice showing the number 6">
-                <img id="dice-four" src="assets/images/dice-6.png" alt="A dice showing the number 6">
-                <img id="dice-five" src="assets/images/dice-6.png" alt="A dice showing the number 6">
-            </div>
-            <div id="roll-area">
-                <button id="roll-button" class="btn">Roll Dice</button>
-            </div>
-        </section>
+        <div id="game-and-hint-area">
+            <!-- Game Section for the dice -->
+            <section id="game-area">
+                <div id="rolls">
+                    <span id="number-of-rolls">3</span> Rolls left
+                </div>
+                <div id="dice">
+                    <img id="dice-one" src="assets/images/dice-6.png" alt="A dice showing the number 6">
+                    <img id="dice-two" src="assets/images/dice-6.png" alt="A dice showing the number 6">
+                    <img id="dice-three" src="assets/images/dice-6.png" alt="A dice showing the number 6">
+                    <img id="dice-four" src="assets/images/dice-6.png" alt="A dice showing the number 6">
+                    <img id="dice-five" src="assets/images/dice-6.png" alt="A dice showing the number 6">
+                </div>
+                <div id="roll-area">
+                    <button id="roll-button" class="btn">Roll Dice</button>
+                </div>
+            </section>
+
+            <!-- Hint Section -->
+            <section id="hint-area">
+                <div id="table-hint" style="display: none">
+                    <p>Pick any table row to enter your score for each round, until the table is filled.</p>
+                    <p>Click on "Rules" to see how the scores are calculated.</p>
+                </div>
+                <div id="lock-hint" style="display: none">
+                    <p>Roll the dice to play.</p>
+                    <p>Lock values you want to keep by clicking on the respective dice.</p>
+                </div>
+            </section>
+        </div>
 
         <!-- Scoresheet Section -->
         <section id="scoresheet-area">
