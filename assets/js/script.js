@@ -309,47 +309,52 @@ function toggleDice(event) {
     let clickedDice = event.srcElement;
     let diceId = clickedDice.id;
     let diceClassList = clickedDice.classList;   
-    if (diceClassList.length === 0) {
-        // lock
-        diceClassList.add("locked");
-        switch (diceId) {
-            case 'dice-one':
-                diceArray[0].state = 'locked';
-                break;
-            case 'dice-two':
-                diceArray[1].state = 'locked';
-                break;
-            case 'dice-three':
-                diceArray[2].state = 'locked';
-                break;
-            case 'dice-four':
-                diceArray[3].state = 'locked';
-                break;
-            case 'dice-five':
-                diceArray[4].state = 'locked';
-                break;
-        }
+    if (numberOfRolls === 3) {
+        alert('You need to roll before you can lock any dice.');
     } else {
-        // unlock
-        diceClassList.remove('locked');
-        switch (diceId) {
-            case 'dice-one':
-                diceArray[0].state = '';
-                break;
-            case 'dice-two':
-                diceArray[1].state = '';
-                break;
-            case 'dice-three':
-                diceArray[2].state = '';
-                break;
-            case 'dice-four':
-                diceArray[3].state = '';
-                break;
-            case 'dice-five':
-                diceArray[4].state = '';
-                break;
+        if (diceClassList.length === 0) {
+            // lock
+            diceClassList.add("locked");
+            switch (diceId) {
+                case 'dice-one':
+                    diceArray[0].state = 'locked';
+                    break;
+                case 'dice-two':
+                    diceArray[1].state = 'locked';
+                    break;
+                case 'dice-three':
+                    diceArray[2].state = 'locked';
+                    break;
+                case 'dice-four':
+                    diceArray[3].state = 'locked';
+                    break;
+                case 'dice-five':
+                    diceArray[4].state = 'locked';
+                    break;
+            }
+        } else {
+            // unlock
+            diceClassList.remove('locked');
+            switch (diceId) {
+                case 'dice-one':
+                    diceArray[0].state = '';
+                    break;
+                case 'dice-two':
+                    diceArray[1].state = '';
+                    break;
+                case 'dice-three':
+                    diceArray[2].state = '';
+                    break;
+                case 'dice-four':
+                    diceArray[3].state = '';
+                    break;
+                case 'dice-five':
+                    diceArray[4].state = '';
+                    break;
+            }
         }
     }
+    
 }
 
 /**
