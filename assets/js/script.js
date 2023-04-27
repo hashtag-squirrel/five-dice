@@ -596,6 +596,7 @@ function displayHighscores() {
     gameArea.style = "display: none";
     scoresheetArea.style = "display: none";
     footer.style = "display: none";
+    hintArea.style = "display: none";
     hideHighscoresBtn.addEventListener('click', function() {
         highscoresArea.style = "display: none";
         gameArea.style = "";
