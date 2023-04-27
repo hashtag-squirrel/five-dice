@@ -105,18 +105,21 @@ let playerName;
 let randomName;
 
 // Wait for the DOM to finish loading before running the game
+// Calling functions to get data from localStorage
 document.addEventListener('DOMContentLoaded', function() {
     setHighscores();
     setTimeout(getPlayerName, 300);
     setTimeout(getHighscores, 300);
     buildHighscoreTable();
-    playerName = playerNameDisplay.addEventListener('click', changePlayerName);
     runGame();
 });
 
 /** 
 * Runs the game
-*/ 
+ * Adds event listeners for interactable elements: tableBody, allDice, rulesBtn, highscoresBtn and playerNameDisplay
+ * Sets game-relevant variables to starting values: totalScore, numberOfRolls and numberOfRounds
+ * Clears the table scores if there were values from a previous game
+ */ 
 function runGame() {
     console.log("Running game...");
     for (let i = 0; i < 13; i++) {
@@ -132,10 +135,13 @@ function runGame() {
     allDice.addEventListener('click', function(event) {toggleDice(event);});
     rulesBtn.addEventListener('click', displayRules);
     highscoresBtn.addEventListener('click', displayHighscores);
+    playerName = playerNameDisplay.addEventListener('click', changePlayerName);
 }
 
 /**
- * Runs when the game is over
+ * Ends the game
+ * Displays a popup to the player with their score, asking them if they want to play again
+ * Calls the addHighscore function
  */
 function endGame() {
     console.log('Game is over');
@@ -288,8 +294,8 @@ function calculateTotalScore(fieldScore) {
 }
 
 /**
-* Function to lock or unlock dice based on player's choice, returns dice state to diceArray
-*/
+ * Function to lock or unlock dice based on player's choice, updates dice state in diceArray
+ */
 function toggleDice(event) {   
     console.log("Toggling dice...");
     console.log(event);
@@ -341,7 +347,6 @@ function toggleDice(event) {
             }
         }
     }
-    
 }
 
 /**
@@ -361,9 +366,9 @@ function unlockAllDice() {
 }
 
 /**
-* Generates random numbers between 1 and 6 for unlocked dice, returns the dice values
-* and indicates how many rolls left per turn
-*/
+ * Generates random numbers between 1 and 6 for unlocked dice, returns the dice values
+ * and indicates how many rolls left per turn
+ */
 function rollDice() {
     console.log('Rolling dice...');
     if (numberOfRolls > 0) {
@@ -392,8 +397,8 @@ function rollDice() {
 }
 
 /**
-* Lets the player pick a field for the turn and ends the turn
-*/
+ * Lets the player pick a field for the turn and ends the turn
+ */
 function endTurn(event) {
     console.log(`Ending turn... ${numberOfRounds} rounds left`);
     displayHint(false, 'tableHint');
@@ -431,8 +436,8 @@ function endTurn(event) {
 }
 
 /**
-* Checks dice for duplicate faces and returns object diceFaces 
-*/
+ * Checks dice for duplicate faces and returns object diceFaces 
+ */
 function findDuplicates() {
     console.log('Finding duplicates...');
     let diceFaces = {
@@ -470,7 +475,9 @@ function findDuplicates() {
     return diceFaces;
 }
 
-// Returns true if a number is a value of the diceArray
+/**
+ * Returns true if a number is a value of the diceArray, otherwise returns false
+ */ 
 function findNumber(number) {
     console.log('Finding number...');
     let containsNumber = false;
@@ -482,7 +489,9 @@ function findNumber(number) {
     return containsNumber;
 }
 
-// Removes Event Listener for Roll Button and removes class 'active'
+/**
+ * Removes Event Listener for Roll Button and removes class 'active'
+ */ 
 function disableRollBtn() {
     rollBtn.classList = "btn inactive";
     rollBtn.removeEventListener('click', rollDice);
@@ -491,7 +500,7 @@ function disableRollBtn() {
 
 /**
  * Adds Event Listener for Roll Button and adds class 'active'
-*/ 
+ */ 
 function enableRollBtn() {
     rollBtn.classList = "btn active";
     rollBtn.addEventListener('click', rollDice);
@@ -547,8 +556,8 @@ async function getRandomName() {
 }
 
 /**
-* Displays rules
-*/ 
+ * Displays rules and hides all other sections 
+ */ 
 function displayRules() {
     console.log("Displaying rules...");
     rulesArea.style = "display: block";
@@ -565,7 +574,7 @@ function displayRules() {
 }
 
 /**
-* Displays highscores
+* Displays highscores and hides all other sections
 */ 
 function displayHighscores() {
     console.log("Displaying highscores...");
