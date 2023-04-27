@@ -516,6 +516,8 @@ function changePlayerName() {
     if (newName !== '' && newName !== null) {
         playerNameDisplay.textContent = newName;
         localStorage.setItem('playerName', newName);
+        playerName = newName;
+        console.log(`Player name is ${playerName}`);
         return newName;
     } else {
         getRandomName();
@@ -523,6 +525,8 @@ function changePlayerName() {
             console.log(`Player did not choose a name, generated random name ${randomName}`);
             playerNameDisplay.textContent = randomName;
             playerName = randomName;
+            localStorage.removeItem('playerName');
+            console.log(`Player name is ${playerName}`);
             return randomName;
         }, 500);
     }
