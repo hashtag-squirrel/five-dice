@@ -6,30 +6,11 @@ const gameArea = document.getElementById('game-area');
 
 // Constants for dice
 const allDice = document.getElementById('dice');
-const diceOne = document.getElementById('dice').children[0];
-const diceTwo = document.getElementById('dice').children[1];
-const diceThree = document.getElementById('dice').children[2];
-const diceFour = document.getElementById('dice').children[3];
-const diceFive = document.getElementById('dice').children[4];
 
 // Constants from scoresheet area
 const scoresheetArea = document.getElementById('scoresheet-area');
 const tableBody = document.getElementsByTagName('tbody')[0];
 const playerNameDisplay = document.getElementById('player-name');
-
-const ones = document.getElementById('ones').children[1];
-const twos = document.getElementById('twos').children[1];
-const threes = document.getElementById('threes').children[1];
-const fours = document.getElementById('fours').children[1];
-const fives = document.getElementById('fives').children[1];
-const sixes = document.getElementById('sixes').children[1];
-const threeOfAKind = document.getElementById('three-of-a-kind').children[1];
-const fourOfAKind = document.getElementById('four-of-a-kind').children[1];
-const fiveOfAKind = document.getElementById('five-of-a-kind').children[1];
-const fullHouse = document.getElementById('full-house').children[1];
-const smallStraight = document.getElementById('small-straight').children[1];
-const straight = document.getElementById('straight').children[1];
-const chance = document.getElementById('chance').children[1];
 
 const totalScoreDisplay = document.getElementById('score');
 
@@ -124,18 +105,21 @@ let playerName;
 let randomName;
 
 // Wait for the DOM to finish loading before running the game
+// Calling functions to get data from localStorage
 document.addEventListener('DOMContentLoaded', function() {
     setHighscores();
     setTimeout(getPlayerName, 300);
     setTimeout(getHighscores, 300);
     buildHighscoreTable();
-    playerName = playerNameDisplay.addEventListener('click', changePlayerName);
     runGame();
-})
+});
 
 /** 
 * Runs the game
-*/ 
+ * Adds event listeners for interactable elements: tableBody, allDice, rulesBtn, highscoresBtn and playerNameDisplay
+ * Sets game-relevant variables to starting values: totalScore, numberOfRolls and numberOfRounds
+ * Clears the table scores if there were values from a previous game
+ */ 
 function runGame() {
     console.log("Running game...");
     for (let i = 0; i < 13; i++) {
@@ -147,14 +131,17 @@ function runGame() {
     displayHint(true, 'lockHint');
     updateRolls();
     enableRollBtn();
-    tableBody.addEventListener('click', function(event) {endTurn(event)});
-    allDice.addEventListener('click', function(event) {toggleDice(event)});
+    tableBody.addEventListener('click', function(event) {endTurn(event);});
+    allDice.addEventListener('click', function(event) {toggleDice(event);});
     rulesBtn.addEventListener('click', displayRules);
     highscoresBtn.addEventListener('click', displayHighscores);
+    playerName = playerNameDisplay.addEventListener('click', changePlayerName);
 }
 
 /**
- * Runs when the game is over
+ * Ends the game
+ * Displays a popup to the player with their score, asking them if they want to play again
+ * Calls the addHighscore function
  */
 function endGame() {
     console.log('Game is over');
@@ -172,7 +159,7 @@ function endGame() {
 * Updates the number of rolls displayed to the player
 */
 function updateRolls() {
-    console.log('Updating number of rolls...')
+    console.log('Updating number of rolls...');
     numberOfRollsSpan.textContent = numberOfRolls;
 }
 
@@ -180,7 +167,7 @@ function updateRolls() {
 * Calculates the score for a picked field and returns the score
 */ 
 function calculateFieldScore(fieldId, field) {
-    console.log('Calculating field score...')
+    console.log('Calculating field score...');
     let score = 0;
     if (field.textContent === '') {
         switch (fieldId) {
@@ -300,15 +287,15 @@ function calculateFieldScore(fieldId, field) {
 * Calculates the total score whenever a field is filled
 */
 function calculateTotalScore(fieldScore) {
-    console.log('Calculating total score...')
+    console.log('Calculating total score...');
     totalScore = totalScore + fieldScore;
     totalScoreDisplay.textContent = totalScore;
     return totalScore;
 }
 
 /**
-* Function to lock or unlock dice based on player's choice, returns dice state to diceArray
-*/
+ * Function to lock or unlock dice based on player's choice, updates dice state in diceArray
+ */
 function toggleDice(event) {   
     console.log("Toggling dice...");
     console.log(event);
@@ -360,7 +347,6 @@ function toggleDice(event) {
             }
         }
     }
-    
 }
 
 /**
@@ -380,11 +366,11 @@ function unlockAllDice() {
 }
 
 /**
-* Generates random numbers between 1 and 6 for unlocked dice, returns the dice values
-* and indicates how many rolls left per turn
-*/
+ * Generates random numbers between 1 and 6 for unlocked dice, returns the dice values
+ * and indicates how many rolls left per turn
+ */
 function rollDice() {
-    console.log('Rolling dice...')
+    console.log('Rolling dice...');
     if (numberOfRolls > 0) {
         for (let dice in diceArray) {
             if (diceArray[dice].state === 'locked') {
@@ -411,10 +397,10 @@ function rollDice() {
 }
 
 /**
-* Lets the player pick a field for the turn and ends the turn
-*/
+ * Lets the player pick a field for the turn and ends the turn
+ */
 function endTurn(event) {
-    console.log(`Ending turn... ${numberOfRounds} rounds left`)
+    console.log(`Ending turn... ${numberOfRounds} rounds left`);
     displayHint(false, 'tableHint');
     let scoresheetField = event.srcElement;
     if (numberOfRolls === 3) {
@@ -450,10 +436,10 @@ function endTurn(event) {
 }
 
 /**
-* Checks dice for duplicate faces and returns object diceFaces 
-*/
+ * Checks dice for duplicate faces and returns object diceFaces 
+ */
 function findDuplicates() {
-    console.log('Finding duplicates...')
+    console.log('Finding duplicates...');
     let diceFaces = {
         onesInArray: 0,
         twosInArray: 0,
@@ -461,7 +447,7 @@ function findDuplicates() {
         foursInArray: 0,
         fivesInArray: 0,
         sixesInArray: 0,
-    }
+    };
     for (let i = 0; i < diceArray.length; i++) {
         switch(diceArray[i].value) {
             case 1:
@@ -483,15 +469,17 @@ function findDuplicates() {
                 diceFaces.sixesInArray++;
                 break;
             default:
-                throw "The item in the array is not a number!"
+                throw "The item in the array is not a number!";
         }
     }
     return diceFaces;
 }
 
-// Returns true if a number is a value of the diceArray
+/**
+ * Returns true if a number is a value of the diceArray, otherwise returns false
+ */ 
 function findNumber(number) {
-    console.log('Finding number...')
+    console.log('Finding number...');
     let containsNumber = false;
     for (let i = 0; i < diceArray.length; i++) {
         if (diceArray[i].value === number) {
@@ -501,7 +489,9 @@ function findNumber(number) {
     return containsNumber;
 }
 
-// Removes Event Listener for Roll Button and removes class 'active'
+/**
+ * Removes Event Listener for Roll Button and removes class 'active'
+ */ 
 function disableRollBtn() {
     rollBtn.classList = "btn inactive";
     rollBtn.removeEventListener('click', rollDice);
@@ -510,7 +500,7 @@ function disableRollBtn() {
 
 /**
  * Adds Event Listener for Roll Button and adds class 'active'
-*/ 
+ */ 
 function enableRollBtn() {
     rollBtn.classList = "btn active";
     rollBtn.addEventListener('click', rollDice);
@@ -526,6 +516,8 @@ function changePlayerName() {
     if (newName !== '' && newName !== null) {
         playerNameDisplay.textContent = newName;
         localStorage.setItem('playerName', newName);
+        playerName = newName;
+        console.log(`Player name is ${playerName}`);
         return newName;
     } else {
         getRandomName();
@@ -533,6 +525,8 @@ function changePlayerName() {
             console.log(`Player did not choose a name, generated random name ${randomName}`);
             playerNameDisplay.textContent = randomName;
             playerName = randomName;
+            localStorage.removeItem('playerName');
+            console.log(`Player name is ${playerName}`);
             return randomName;
         }, 500);
     }
@@ -557,17 +551,27 @@ function getPlayerName() {
  */
 async function getRandomName() {
     // API call for random name
-    const url = `https://randomuser.me/api/`
+    const url = `https://randomuser.me/api/`;
     const response = await fetch(url);
-    const jsonData = await response.json();
-    randomName = jsonData.results[0].name.first;
-    console.log(randomName);
-    return randomName;
+    if (response.ok) {
+        const jsonData = await response.json();
+        if (jsonData.results[0].name.first) {
+            randomName = jsonData.results[0].name.first;
+            console.log(randomName);
+            return randomName;
+        } else {
+            randomName = 'Bob';
+            return randomName;
+        }
+    } else {
+        randomName = 'Bob';
+        return randomName;
+    }
 }
 
 /**
-* Displays rules
-*/ 
+ * Displays rules and hides all other sections 
+ */ 
 function displayRules() {
     console.log("Displaying rules...");
     rulesArea.style = "display: block";
@@ -580,11 +584,11 @@ function displayRules() {
         gameArea.style = "";
         scoresheetArea.style = "";
         footer.style = "";
-    })
+    });
 }
 
 /**
-* Displays highscores
+* Displays highscores and hides all other sections
 */ 
 function displayHighscores() {
     console.log("Displaying highscores...");
@@ -592,12 +596,13 @@ function displayHighscores() {
     gameArea.style = "display: none";
     scoresheetArea.style = "display: none";
     footer.style = "display: none";
+    hintArea.style = "display: none";
     hideHighscoresBtn.addEventListener('click', function() {
         highscoresArea.style = "display: none";
         gameArea.style = "";
         scoresheetArea.style = "";
         footer.style = "";
-    })
+    });
 }
 
 /**
@@ -632,7 +637,7 @@ function addHighscore() {
     let highscore = {
         name: playerName,
         score: totalScore
-    }
+    };
     for (let i = 0; i < highscoresArray.length; i++) {
         if (totalScore >= highscoresArray[i].score) {
             highscoresArray.splice(i, 0, highscore);
