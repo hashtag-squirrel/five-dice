@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
     buildHighscoreTable();
     playerName = playerNameDisplay.addEventListener('click', changePlayerName);
     runGame();
-})
+});
 
 /** 
 * Runs the game
@@ -128,8 +128,8 @@ function runGame() {
     displayHint(true, 'lockHint');
     updateRolls();
     enableRollBtn();
-    tableBody.addEventListener('click', function(event) {endTurn(event)});
-    allDice.addEventListener('click', function(event) {toggleDice(event)});
+    tableBody.addEventListener('click', function(event) {endTurn(event);});
+    allDice.addEventListener('click', function(event) {toggleDice(event);});
     rulesBtn.addEventListener('click', displayRules);
     highscoresBtn.addEventListener('click', displayHighscores);
 }
@@ -153,7 +153,7 @@ function endGame() {
 * Updates the number of rolls displayed to the player
 */
 function updateRolls() {
-    console.log('Updating number of rolls...')
+    console.log('Updating number of rolls...');
     numberOfRollsSpan.textContent = numberOfRolls;
 }
 
@@ -161,7 +161,7 @@ function updateRolls() {
 * Calculates the score for a picked field and returns the score
 */ 
 function calculateFieldScore(fieldId, field) {
-    console.log('Calculating field score...')
+    console.log('Calculating field score...');
     let score = 0;
     if (field.textContent === '') {
         switch (fieldId) {
@@ -281,7 +281,7 @@ function calculateFieldScore(fieldId, field) {
 * Calculates the total score whenever a field is filled
 */
 function calculateTotalScore(fieldScore) {
-    console.log('Calculating total score...')
+    console.log('Calculating total score...');
     totalScore = totalScore + fieldScore;
     totalScoreDisplay.textContent = totalScore;
     return totalScore;
@@ -365,7 +365,7 @@ function unlockAllDice() {
 * and indicates how many rolls left per turn
 */
 function rollDice() {
-    console.log('Rolling dice...')
+    console.log('Rolling dice...');
     if (numberOfRolls > 0) {
         for (let dice in diceArray) {
             if (diceArray[dice].state === 'locked') {
@@ -395,7 +395,7 @@ function rollDice() {
 * Lets the player pick a field for the turn and ends the turn
 */
 function endTurn(event) {
-    console.log(`Ending turn... ${numberOfRounds} rounds left`)
+    console.log(`Ending turn... ${numberOfRounds} rounds left`);
     displayHint(false, 'tableHint');
     let scoresheetField = event.srcElement;
     if (numberOfRolls === 3) {
@@ -434,7 +434,7 @@ function endTurn(event) {
 * Checks dice for duplicate faces and returns object diceFaces 
 */
 function findDuplicates() {
-    console.log('Finding duplicates...')
+    console.log('Finding duplicates...');
     let diceFaces = {
         onesInArray: 0,
         twosInArray: 0,
@@ -442,7 +442,7 @@ function findDuplicates() {
         foursInArray: 0,
         fivesInArray: 0,
         sixesInArray: 0,
-    }
+    };
     for (let i = 0; i < diceArray.length; i++) {
         switch(diceArray[i].value) {
             case 1:
@@ -464,7 +464,7 @@ function findDuplicates() {
                 diceFaces.sixesInArray++;
                 break;
             default:
-                throw "The item in the array is not a number!"
+                throw "The item in the array is not a number!";
         }
     }
     return diceFaces;
@@ -472,7 +472,7 @@ function findDuplicates() {
 
 // Returns true if a number is a value of the diceArray
 function findNumber(number) {
-    console.log('Finding number...')
+    console.log('Finding number...');
     let containsNumber = false;
     for (let i = 0; i < diceArray.length; i++) {
         if (diceArray[i].value === number) {
@@ -538,7 +538,7 @@ function getPlayerName() {
  */
 async function getRandomName() {
     // API call for random name
-    const url = `https://randomuser.me/api/`
+    const url = `https://randomuser.me/api/`;
     const response = await fetch(url);
     const jsonData = await response.json();
     randomName = jsonData.results[0].name.first;
@@ -561,7 +561,7 @@ function displayRules() {
         gameArea.style = "";
         scoresheetArea.style = "";
         footer.style = "";
-    })
+    });
 }
 
 /**
@@ -578,7 +578,7 @@ function displayHighscores() {
         gameArea.style = "";
         scoresheetArea.style = "";
         footer.style = "";
-    })
+    });
 }
 
 /**
@@ -613,7 +613,7 @@ function addHighscore() {
     let highscore = {
         name: playerName,
         score: totalScore
-    }
+    };
     for (let i = 0; i < highscoresArray.length; i++) {
         if (totalScore >= highscoresArray[i].score) {
             highscoresArray.splice(i, 0, highscore);
