@@ -549,10 +549,20 @@ async function getRandomName() {
     // API call for random name
     const url = `https://randomuser.me/api/`;
     const response = await fetch(url);
-    const jsonData = await response.json();
-    randomName = jsonData.results[0].name.first;
-    console.log(randomName);
-    return randomName;
+    if (response.ok) {
+        const jsonData = await response.json();
+        if (jsonData.results[0].name.first) {
+            randomName = jsonData.results[0].name.first;
+            console.log(randomName);
+            return randomName;
+        } else {
+            randomName = 'Bob';
+            return randomName;
+        }
+    } else {
+        randomName = 'Bob';
+        return randomName;
+    }
 }
 
 /**
