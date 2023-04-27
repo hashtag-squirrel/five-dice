@@ -60,8 +60,6 @@ To improve your score, you can decide to roll only specific dice on subsequent r
     - [Validator Testing](#validator-testing)
     - [Lighthouse Testing](#lighthouse-testing)
     - [General Testing](#general-testing)
-    - [Desktop Testing](#desktop-testing)
-    - [Mobile Testing](#mobile-testing)
     </details></li>
 
     <li><details>
@@ -320,11 +318,6 @@ No Frameworks or Libraries were used in this project
 #### General Testing
 <span style="color:red">WIP</span>
 
-#### Desktop Testing
-<span style="color:red">WIP</span>
-
-#### Mobile Testing
-<span style="color:red">WIP</span>
 
 ### Bugs
 
