@@ -126,6 +126,7 @@ function runGame() {
         tableBody.children[i].children[1].textContent = '';
     }
     totalScore = 0;
+    totalScoreDisplay.textContent = '0';
     numberOfRolls = 3;
     numberOfRounds = 13;
     displayHint(true, 'lockHint');
@@ -551,7 +552,7 @@ function getPlayerName() {
  */
 async function getRandomName() {
     // API call for random name
-    const url = `https://randomuser.me/api/`;
+    const url = `https://randomuser.me/api`;
     const response = await fetch(url);
     if (response.ok) {
         const jsonData = await response.json();
