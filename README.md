@@ -308,12 +308,19 @@ No Frameworks or Libraries were used in this project
       - There are 30 functions in this file.
       - Function with the largest signature takes 2 arguments, while the median is 0.
       - Largest function has 33 statements in it, while the median is 5.
-      - The most complex function has a cyclomatic complexity value of 61 while the median is 1.5.
+      - The most complex function has a cyclomatic complexity value of 61 while the median is 2.
     - One warning was shown:
       - 'async functions' is only available in ES8 (use 'esversion: 8').
 
 #### Lighthouse Testing 
-<span style="color:red">WIP</span>
+
+The site was tested using the Chrome Dev Tools Lighthouse test. 
+
+Here are the results for 
+- Desktop
+![Lighthouse Results](assets/images/readme/five-dice-lighthouse.png)
+- Mobile
+![Lighthouse Results](assets/images/readme/five-dice-lighthouse-mobile.png)
 
 #### General Testing
 <span style="color:red">WIP</span>
