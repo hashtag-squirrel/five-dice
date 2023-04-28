@@ -11,74 +11,40 @@ To improve your score, you can decide to roll only specific dice on subsequent r
 ![Responsice Mockup](assets/images/readme/five-dice-mockup.png)
 
 ## Table of Contents
-
-1. <details open>
-    <summary><a href="#ux">UX</a></summary>
-
-    <ul>
-    <li>
-    <summary><a href="#user-stories">User Stories</a></summary>
-    </li>
-
-    <li><details>
-    <summary><a href="#visual-design">Visual Design</a></summary>
-
-    - [Wireframes](#wireframes)
-    - [Colors](#colors)
-    - [Fonts](#fonts)
-    - [Images](#images)
-    </details></li>
-    </ul>
-</details>
-
-2. <details open>
-    <summary><a href="#features">Features</a></summary>
-
-    <ul>
-    <li>
-    <summary><a href="#features-left-to-implement">Features left to implement</a></summary>
-    </li>
-    </ul>
-</details>
-
-3. <details open>
-    <summary><a href="#technologies-used">Technologies Used</a></summary>
-
+- [5DICE](#5dice)
+  - [Table of Contents](#table-of-contents)
+  - [UX](#ux)
+    - [User Stories](#user-stories)
+    - [Visual Design](#visual-design)
+      - [__Wireframes__](#wireframes)
+        - [Desktop](#desktop)
+        - [Tablet](#tablet)
+        - [Phone](#phone)
+      - [__Colors__](#colors)
+      - [__Fonts__](#fonts)
+      - [__Images__](#images)
+  - [Features](#features)
+    - [Existing Features](#existing-features)
+    - [Features Left to Implement](#features-left-to-implement)
+  - [Technologies used](#technologies-used)
     - [Languages](#languages)
     - [Frameworks, Libraries](#frameworks-libraries)
     - [APIs](#apis)
     - [Other Tools](#other-tools)
-</details>
-
-4. <details open>
-    <summary><a href="#testing">Testing</a></summary>
-
-    <ul>
-    <li><details>
-    <summary><a href="#methods">Methods</a></summary>
-
-    - [Validator Testing](#validator-testing)
-    - [Lighthouse Testing](#lighthouse-testing)
-    - [General Testing](#general-testing)
-    </details></li>
-
-    <li><details>
-    <summary><a href="#bugs">Bugs</a></summary>
-
-    - [Known Bugs](#known-bugs)
-    - [Fixed Bugs](#fixed-bugs)
-    </details></li>
-    </ul>
-</details>
-
-5. <summary><a href="#deployment">Deployment</a></summary>
-
-6. <details open>
-    <summary><a href="#credits">Credits</a></summary>
-
+  - [Testing](#testing)
+    - [Methods](#methods)
+      - [__Validator Testing__](#validator-testing)
+      - [__Lighthouse Testing__](#lighthouse-testing)
+      - [__General Testing__](#general-testing)
+    - [Bugs](#bugs)
+      - [__Known Bugs__](#known-bugs)
+      - [__Fixed Bugs__](#fixed-bugs)
+  - [Deployment](#deployment)
+  - [Credits](#credits)
     - [Content](#content)
     - [Media](#media)
-</details>
+      - [__Images__](#images-1)
+
 
 ----
 
