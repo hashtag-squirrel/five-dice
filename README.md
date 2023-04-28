@@ -6,79 +6,45 @@
 
 The core gameplay consists of several rounds with three rolls each, where you try to achieve as high a score as possible with different combinations of your five dice.
 
-To improve your score, you can decide to roll only specific dice on subsequent rolls in your turn and after at most three rolls you have to pick a score. 
+To improve your score, you can decide to roll only specific dice on subsequent rolls in your turn, and after at most three rolls, you have to pick a score. 
 
 ![Responsice Mockup](assets/images/readme/five-dice-mockup.png)
 
 ## Table of Contents
-
-1. <details open>
-    <summary><a href="#ux">UX</a></summary>
-
-    <ul>
-    <li>
-    <summary><a href="#user-stories">User Stories</a></summary>
-    </li>
-
-    <li><details>
-    <summary><a href="#visual-design">Visual Design</a></summary>
-
-    - [Wireframes](#wireframes)
-    - [Colors](#colors)
-    - [Fonts](#fonts)
-    - [Images](#images)
-    </details></li>
-    </ul>
-</details>
-
-1. <details open>
-    <summary><a href="#features">Features</a></summary>
-
-    <ul>
-    <li>
-    <summary><a href="#features-left-to-implement">Features left to implement</a></summary>
-    </li>
-    </ul>
-</details>
-
-1. <details open>
-    <summary><a href="#technologies-used">Technologies Used</a></summary>
-
+- [5DICE](#5dice)
+  - [Table of Contents](#table-of-contents)
+  - [UX](#ux)
+    - [User Stories](#user-stories)
+    - [Visual Design](#visual-design)
+      - [Wireframes](#wireframes)
+        - [Desktop](#desktop)
+        - [Tablet](#tablet)
+        - [Phone](#phone)
+      - [Colors](#colors)
+      - [Fonts](#fonts)
+      - [Images](#images)
+  - [Features](#features)
+    - [Existing Features](#existing-features)
+    - [Features Left to Implement](#features-left-to-implement)
+  - [Technologies used](#technologies-used)
     - [Languages](#languages)
     - [Frameworks, Libraries](#frameworks-libraries)
     - [APIs](#apis)
     - [Other Tools](#other-tools)
-</details>
-
-1. <details open>
-    <summary><a href="#testing">Testing</a></summary>
-
-    <ul>
-    <li><details>
-    <summary><a href="#methods">Methods</a></summary>
-
-    - [Validator Testing](#validator-testing)
-    - [Lighthouse Testing](#lighthouse-testing)
-    - [General Testing](#general-testing)
-    </details></li>
-
-    <li><details>
-    <summary><a href="#bugs">Bugs</a></summary>
-
-    - [Known Bugs](#known-bugs)
-    - [Fixed Bugs](#fixed-bugs)
-    </details></li>
-    </ul>
-</details>
-
-1. <summary><a href="#deployment">Deployment</a></summary>
-
-2. <details open>
-    <summary><a href="#credits">Credits</a></summary>
-
+  - [Testing](#testing)
+    - [Methods](#methods)
+      - [Validator Testing](#validator-testing)
+      - [Lighthouse Testing](#lighthouse-testing)
+      - [General Testing](#general-testing)
+    - [Bugs](#bugs)
+      - [Known Bugs](#known-bugs)
+      - [Fixed Bugs](#fixed-bugs)
+  - [Deployment](#deployment)
+  - [Credits](#credits)
     - [Content](#content)
     - [Media](#media)
-</details>
+      - [Images](#images-1)
+
 
 ----
 
@@ -86,9 +52,9 @@ To improve your score, you can decide to roll only specific dice on subsequent r
 
 ### User Stories
 
-- First time visitors
-    - As a first time visitor, I want to be able to play a game from start to finish, which includes the functionality listed below as MVP
-    - As a first time visitor, I want to have a personalized game experience
+- First-time visitors
+    - As a first-time visitor, I want to be able to play a game from start to finish, which includes the functionality listed below as MVP
+    - As a first-time visitor, I want to have a personalized game experience
 
 - Returning visitors
     - As a returning visitor, I want to be able to see my previous scores
@@ -114,11 +80,11 @@ To improve your score, you can decide to roll only specific dice on subsequent r
 
 ### Visual Design
 
-#### __Wireframes__
+#### Wireframes
 
-Wireframes were created at the beginning of the design process using Balsamiq for Desktop, Tablets (horizontal and vertical orientation) and Smartphones (vertical orientation). Some design elements were changed in the finished product. 
+Wireframes were created at the beginning of the design process using Balsamiq for Desktop, Tablets (horizontal and vertical orientation), and Smartphones (vertical orientation). Some design elements were changed in the finished product. 
 
-The structural design was kept as simple as possible, with the goal to not distract from the gameplay and have the main parts of the game front and center at all times. 
+The structural design was kept as simple as possible, with the goal of not distracting from the gameplay and having the main parts of the game front and center at all times. 
 
 For smaller screens, the elements will be aligned vertically, so the elements are still prominent in the middle of the screen and not too small.
 
@@ -132,25 +98,25 @@ For smaller screens, the elements will be aligned vertically, so the elements ar
 ##### Phone
 ![5DICE Phone Wireframe](assets/images/readme/5dice-wireframe-phone.png)
 
-#### __Colors__
+#### Colors
 
 The color palette was chosen using [Colormind.io](http://colormind.io/).
-I chose a calm color palette, again with the goal not to distract too much from the game itself. 
+I chose a calm color palette, again with the goal of not distracting too much from the game itself. 
 
 ![Color Palette](assets/images/readme/five-dice-color-palette.png)
 
-#### __Fonts__
+#### Fonts
 
 At the beginning of the design process, I chose the fonts Roboto and Amatic SC (both from [Google Fonts](https://fonts.google.com/)). 
 
-I wanted to have a font that had a handwritten style for the scoresheet, to make it feel like the player was actually writing down scores themselves. 
+I wanted to have a font that had a handwritten style for the scoresheet, to make it feel like the player was writing down scores themselves. 
 
 I quickly decided to use the same font across the whole site (apart from the logo), since it looked too busy with two different fonts. 
 I also received the feedback, that Amatic SC was too thin and hard to read, so I switched to Kalam, also imported from [Google Fonts](https://fonts.google.com/).
 
-#### __Images__
+#### Images
 
-I wanted to keep the site as minimalistic as possible, since the game itself has very little elements as well. I chose a very simple dice image to display the five dice in the game area and used the same dice to create the logo using [Canva](https://www.canva.com/).
+I wanted to keep the site as minimalistic as possible since the game itself has very few elements as well. I chose a very simple dice image to display the five dice in the game area and used the same dice to create the logo using [Canva](https://www.canva.com/).
 
 ## Features 
 
@@ -179,7 +145,7 @@ I wanted to keep the site as minimalistic as possible, since the game itself has
       - In its disabled state, it turns grey and also changes its text to make it clear that the player should choose a score now.
       - When the player tries to roll when the button is disabled, there is an alert to inform the player to please pick a score first.
 
-    When the player rolls the dice, the turns are reduced with each roll and the dice update to display the new values. After the first roll, the player can lock the dice by clicking on them if they want to keep any value(s). The player can also unlock the dice at any point during the turn. 
+    When the player rolls the dice, the turns are reduced with each roll, and the dice update to display the new values. After the first roll, the player can lock the dice by clicking on them if they want to keep any value(s). The player can also unlock the dice at any point during the turn. 
 
     After the player chooses a score (more on this in the next section), all dice unlock automatically and the roll button gets enabled again. 
 
@@ -190,7 +156,7 @@ I wanted to keep the site as minimalistic as possible, since the game itself has
 
     At the beginning of the first game, the Hint Area displays two different hints on how the game is played to the player.
 
-    The first hint is displayed as long as the player can roll the dice. It explains to the player that they are supposed to roll the dice to play, and how to lock dice. 
+    The first hint is displayed as long as the player can roll the dice. It explains to the player that they are supposed to roll the dice to play, and how to lock the dice. 
 
     The second hint is displayed as soon as the third roll is done and the player needs to pick a score. It tells the player to pick a table row to enter the score and that the explanation of the scores can be found when clicking on Rules. 
 
@@ -206,11 +172,11 @@ I wanted to keep the site as minimalistic as possible, since the game itself has
     The scoresheet has a header displaying the chosen name of the player, which the player is asked to input when first loading the game. The name is then saved in localStorage. If the player decides not to input a name, the site gets a random name from a random user generator API. The random name does not get saved in localStorage. 
 
     The other rows in the scoresheet show the different types of scores and the score the player enters in that field (or empty for scores that are not yet picked).
-    When hovering over the table rows, they change background color to a light blue to indicate that the player can input something here. 
+    When hovering over the table rows, they change the background color to a light blue to indicate that the player can input something here. 
     When the player tries to input something in a row that was picked previously, an alert informs the player to please pick another field. 
     The total score gets updated every time the player enters a score in the table.
 
-    The player can input a score after the first, second or third roll each round, they don't have to use all rolls every round.
+    The player can input a score after the first, second, or third roll each round, they don't have to use all rolls every round.
     The player can also input any score in any field, but it may be 0 if not matching the conditions for the field. 
 
 ![Scoresheet](assets/images/readme/five-dice-scoresheet.png)
@@ -227,7 +193,7 @@ I wanted to keep the site as minimalistic as possible, since the game itself has
 
 - __Rules__
 
-The Rules section is displayed when clicking on the Rules button in the footer. All other sections apart from the header with the logo get hidden, but the game does not get interruped/refreshed. 
+The Rules section is displayed when clicking on the Rules button in the footer. All other sections apart from the header with the logo get hidden, but the game does not get interrupted/refreshed. 
 
 It is divided into two main parts: How to play and How the scores work.
 The first part explains the rules of the game itself and the second part explains how the scores are calculated row by row. 
@@ -238,11 +204,11 @@ Below the explanations, there is a button that, when clicked, hides the Rules se
 
 - __Highscores__
 
-The Highscores section displays the 10 best games by rank, name and score. When the player first plays, the table is not empty, but instead contains scores and a "challenge", spelling out "Can you beat these scores that are hard coded here" in the Name column. 
+The Highscores section displays the 10 best games by rank, name, and score. When the player first plays, the table is not empty, but instead contains scores and a "challenge", spelling out "Can you beat these scores that are hard-coded here" in the Name column. 
 
-At the end of a game, the player's name is entered in the Highscores and the last position in the highscores array gets removed.
+At the end of a game, the player's name is entered in the Highscores and the last position in the Highscores array gets removed.
 
-For better readability, the columns alter in background color between the dark blue and a lighter blue. 
+For better readability, the columns alter in background color between dark blue and lighter blue. 
 
 Like the Rules section, the Highscores section also has a button to take them back to the game. 
 
@@ -250,29 +216,29 @@ Like the Rules section, the Highscores section also has a button to take them ba
 
 - __Additional Features__
 
-    There were a couple of features added to the MVP because there was enough time. Mostly, they were chosen by how much impact they had on the User Experience. 
+    Because of good time and priority management in the beginning, I was able to add a couple of additional features to the game.
 
     The additional features were:
     - The changing of the player name
-    - Using a random name if the player doesn't want to enter a name via API call
-    - The addition of the highscores
+    - Using a random name if the player doesn't want to enter a name via an API call
+    - The addition of the Highscores
 
 ### Features Left to Implement
 
-There is still a lot of opportunity to improve the game. The following feature ideas came up during planning, but were left out according to prioritization comparing impact and complexity. 
+There is still a lot of opportunity to improve the game. The following feature ideas came up during planning but were left out according to prioritization comparing impact and complexity. 
 
 - Cosmetic additions:
-    - Change theme of game area and save in localstorage
-      - Different styles could be picked by the player depending on their preference, e.g. simple, colors, DnD (with background image with dragons) and saved in localStorage so the page loads the same every time
+    - Change the theme of the game area and save it in localStorage
+      - Different styles could be picked by the player depending on their preference, e.g. simple, colors, DnD (with background image with dragons), and saved in localStorage so the page loads the same every time
     - Animate dice roll
-      - The dice could be changing diceface when rolling the dice for a few seconds to make the roll feel more dynamic
+      - The dice could be changing dice face when rolling the dice for a few seconds to make the roll feel more dynamic
 
 - Functional additions:
     - 2 Player Game
-      - A second player (or more) could be added and it could be turn based to make it more competitive
+      - A second player (or more) could be added and it could be turn-based to make it more competitive
     - Player vs. Computer Game
       - An AI player could be added to play against the player
-    - Helper function that precalculates potential scores and makes decisioning easier
+    - Helper function that precalculates potential scores and makes decisions easier
       - The helper function could display the current roll in all empty fields with the theoretical value in italics, making it easier to make optimal decisions for the player. Additionally, it could be displayed as a current roll/best score, for example, the best score for the Ones would be 5, whereas it would be 30 for the Sixes. 
 
 ## Technologies used
@@ -289,14 +255,19 @@ No Frameworks or Libraries were used in this project
 - [Random User Generator API](https://randomuser.me/)
 
 ### Other Tools
-- [Mockup Generator](https://techsini.com/multi-mockup/index.php)
-- [Balsamiq](https://balsamiq.com/)
+- [Mockup Generator](https://techsini.com/multi-mockup/index.php) for the responsive mockup
+- [Balsamiq](https://balsamiq.com/) for the wireframes
+- [Google Fonts](https://fonts.google.com/) for the fonts
+- [Canva](https://www.canva.com/) for the logo design
+- [Visual Studio Code](https://code.visualstudio.com/) as an IDE
+- [GitHub & GitHub Desktop](https://github.com/) to host the code
+- [Git](https://git-scm.com/) as version control 
 
 ## Testing 
 
 ### Methods
 
-#### Validator Testing 
+#### Validator Testing
 
 - HTML
     - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fhashtag-squirrel.github.io%2Ffive-dice%2F)
@@ -323,16 +294,93 @@ Here are the results for
 ![Lighthouse Results](assets/images/readme/five-dice-lighthouse-mobile.png)
 
 #### General Testing
-<span style="color:red">WIP</span>
+- __As a first-time visitor, I want to be able to play a game from start to finish,  which includes the functionality listed below as MVP__
 
+|          **Feature tested**         | **How it was tested**                                                                                                                        | **Test result** |                                                                              **Comments**                                                                             |
+|:-------------------------------------------:|----------------------------------------------------------------------------------------------------------------------------------------------|:---------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| 1 Player Game                               | Played the game from start to finish                                                                                                         | Pass            |                                                                                                                                                                       |
+| Picking a field for the current turn        | Verified that any field can be picked for the score at any round of the game                                                                 | Pass            | Also made sure that it can be picked after one, two, or three rolls, but not before rolling at least once                                                              |
+| Calculating a score per field               | Tried to enter a score in each field of the game to see if the calculation was correct                                                       | Pass            |                                                                                                                                                                       |
+| Calculating the total score on every turn   | Checked the total score after entering a score every round                                                                                   | Pass            |                                                                                                                                                                       |
+| Ending a turn once a field is picked        | Verified that the counter for rounds is decreased and the rolls per turn are reset to 3                                                   | Pass            |                                                                                                                                                                       |
+| Rolling the dice                            | Rolled the dice and checked that the values change in a properly random pattern                                                              | Pass            |                                                                                                                                                                       |
+| Indicating how many rolls are left per turn | Verified that the rolls counter behaves as expected after rolling (decreasing the turns),  as well as after entering a score (resetting to 3) | Pass            |                                                                                                                                                                       |
+| Locking the dice                            | Verified that dice can be locked and unlocked at any point during the rolls, but not before rolling at least once                            | Pass            | Also made sure that the dice automatically get unlocked after entering a score                                                                                        |
+| Displaying the rules                        | Clicked on the rules button and made sure that the styling looks good and it is readable                                                     | Pass            | Also made sure that it is not refreshing the page, so the game can be picked up at the same point again Also made sure that the Back to game button works as expected |
+
+
+- __As a first-time visitor, I want to have a personalized game experience__
+  
+| **Feature tested**                                                  | **How it was tested**                                                                                                                  | **Test result** |                                                                    **Comments**                                                                   |
+|-----------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|:---------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------:|
+| The changing of the player name                                             | Entered a name in the confirm popup and checked the table header                                                                       | Pass            | Also clicked on the table header to get the confirm popup and change the name midgame to verify the functionality of the feature at any point of the game |
+| Using a random name if the player doesn't want to enter a name via API call | Clicked on cancel in the confirm popup to see if a random name populates the table header                                              | Pass            |                                                                                                                                                   |
+| Diverting to a default name if the API call for the random name fails       | Changed the URL for the API call and then clicked on cancel in the confirm popup to see if the default name populates the table header | Pass            |                                                                                                                                                   |
+
+- __As a returning visitor, I want to be able to see my previous scores__
+
+| **Feature tested**                            | **How it was tested**                                                                                                                                 | **Test result** | **Comments** |
+|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------:|:------------:|
+| Adding Highscores at the end of a game     | Played a game to the end and then checked that the score was shown in the Highscores section                                                          | Pass            |              |
+| Getting/Setting of Highscores in localStorage | After setting a highscore, refreshed the page to see if the score was still shown in the Highscores section                                           | Pass            |              |
+| Styling of Highscores section                 | Clicked on the Highscores button to see that the page overlayed the main area, all other sections/divs were hidden and the Back to the game button worked | Pass            |         Also added a "challenge" in the Highscores in the default Highscore array     |
+
+- __As a returning visitor, I want to have my name saved from a previous visit__
+
+| **Feature tested**                             | **How it was tested**                                                                            | **Test result** | **Comments** |
+|------------------------------------------------|--------------------------------------------------------------------------------------------------|:---------------:|:------------:|
+| Setting/Getting of player name in localStorage | After picking a name, refreshing the page to see if the name showed up in the table header again | Pass            |              |
+
+- __As a business, I want to offer a polished product__
+
+| **Feature tested**                                                       | **How it was tested**                                       | **Test result** | **Comments** |
+|--------------------------------------------------------------------------|-------------------------------------------------------------|:---------------:|:------------:|
+| Button feedback on hover                                                 | Hovered and clicked on buttons                              | Pass            |              |
+| Table feedback on hover                                                  | Hovered over the different table rows                       | Pass            |              |
+|                                                                          |                                                             |                 |              |
+| Checked responsiveness of the site on:                                   |                                                             |                 |              |
+| iPhone 12 pro                                                            | Navigated the site and played the game from start to finish | Pass            |              |
+| iPhone 14 pro                                                            | Navigated the site and played the game from start to finish | Pass            |              |
+| iPad mini                                                                | Navigated the site and played the game from start to finish | Pass            |              |
+| MacBook Pro 16"                                                          | Navigated the site and played the game from start to finish | Pass            |              |
+| Huawei Honor 9x Lite                                                     | Navigated the site and played the game from start to finish | Pass            |              |
+| Windows 10 with 34" screen                                               | Navigated the site and played the game from start to finish | Pass            |              |
+| Windows 11 on Dell Laptop 16"                                            | Navigated the site and played the game from start to finish | Pass            |              |
+| Chrome Dev Tools on different screen resolutions from 340px up to 1400px | Navigated the site and played the game from start to finish | Pass            |              |
+
+- __As a business, I want to offer a fun game experience__
+
+| **Feature tested**                                | **How it was tested**                                                                                                                      | **Test result** |                         **Comments**                         |
+|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|:---------------:|:------------------------------------------------------------:|
+| Display of hint for an easy introduction to gameplay | Refreshed the site and checked that the correct hint is displayed at the correct point of the game                                         | Pass            |                                                              |
+| Feedback for inappropriate user actions           | Played the game and checked for alerts when:                                                                                               |                 |                                                              |
+|                                                   | tried rolling the dice when no turns are left                                                                                              | Pass            |                                                              |
+|                                                   | tried adding a score before rolling                                                                                                        | Pass            |                                                              |
+|                                                   | tried adding a score in a field already filled                                                                                             | Pass            |                                                              |
+|                                                   | tried locking the dice before rolling in the new turn                                                                                      | Pass            |                                                              |
+| General "fun" game experience                     | Played the game from start to finish several times in a row myself and had people test the site as well who gave feedback that it was fun  | Pass            | People said it was even fun when they didn't know what to do  |
 
 ### Bugs
 
 #### Known Bugs
-<span style="color:red">WIP</span>
+At the point of deployment, there were no known, unfixed bugs. 
 
 #### Fixed Bugs
-<span style="color:red">WIP</span>
+
+During development, the following bugs were identified and fixed:
+- After finishing a game and starting a new one, the total score still displays the last total score
+  - Fix: Set the totalScoreDisplay to '0' in the runGame() function
+- After finishing a game and starting a new one, the dice cannot be toggled anymore
+  - Fix: Removed the eventListeners from the runGame() function and instead added them when the page loads
+- Highscores do not persist through refreshing the page
+  - Fix: Add an if-clause to the getHighscores() function that checks if localStorage already has the highscores and if it doesn't it sets the starting array, otherwise it sets the Highscores fetched from localStorage
+- When running the site through the HTML validator, it gave a warning there were three sections without headings
+  - Fix: Changed the sections into divs
+- When opening the highscores, the Hint was still shown
+  - Fix: set 'display: none' for hintArea.style in displayHighscores() function
+- When changing playerName from a random name to a picked name, the random name was entered into highscores
+  - Fix: The function to pick a name was not setting the playerName as newName, so I added it 
+
 
 ## Deployment 
 
@@ -347,7 +395,7 @@ The live link can be found here: https://hashtag-squirrel.github.io/five-dice/
 
 ### Content 
 
-- Articles referred to in depth: 
+- Documentation and tutorials referred to in-depth: 
     - [Fetch API Documentation](https://www.w3schools.com/jsref/api_fetch.asp)
     - [localStorage Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
     - [Set and Get objects/array in localStorage](https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage)
@@ -356,19 +404,19 @@ The live link can be found here: https://hashtag-squirrel.github.io/five-dice/
 
 #### Images
 - Dice with shadow (used for logo):
-https://pixabay.com/vectors/one-dice-eyes-gamble-luck-chance-310338/
-https://pixabay.com/vectors/two-dice-eyes-gamble-luck-chance-310337/
-https://pixabay.com/vectors/three-dice-eyes-gamble-luck-310336/
-https://pixabay.com/vectors/dice-four-eyes-gamble-luck-chance-310335/
-https://pixabay.com/vectors/five-dice-eyes-gamble-luck-chance-310334/
-https://pixabay.com/vectors/dice-six-eyes-gamble-luck-chance-310333/
+  - https://pixabay.com/vectors/one-dice-eyes-gamble-luck-chance-310338/
+  - https://pixabay.com/vectors/two-dice-eyes-gamble-luck-chance-310337/
+  - https://pixabay.com/vectors/three-dice-eyes-gamble-luck-310336/
+  - https://pixabay.com/vectors/dice-four-eyes-gamble-luck-chance-310335/
+  - https://pixabay.com/vectors/five-dice-eyes-gamble-luck-chance-310334/
+  - https://pixabay.com/vectors/dice-six-eyes-gamble-luck-chance-310333/
 
-- Dice without shadow (used for game area):
-https://pixabay.com/vectors/dice-rolling-throwing-one-dot-312625/
-https://pixabay.com/vectors/dice-throwing-rolling-two-dots-312627/
-https://pixabay.com/vectors/dice-roll-three-dots-luck-risk-312624/
-https://pixabay.com/vectors/dice-four-dots-luck-gambling-312623/
-https://pixabay.com/vectors/dice-five-gambling-luck-chance-312622/
-https://pixabay.com/vectors/dice-gambling-play-chance-cube-312621/
+- Dice without shadow (used for the game area):
+  - https://pixabay.com/vectors/dice-rolling-throwing-one-dot-312625/
+  - https://pixabay.com/vectors/dice-throwing-rolling-two-dots-312627/
+  - https://pixabay.com/vectors/dice-roll-three-dots-luck-risk-312624/
+  - https://pixabay.com/vectors/dice-four-dots-luck-gambling-312623/
+  - https://pixabay.com/vectors/dice-five-gambling-luck-chance-312622/
+  - https://pixabay.com/vectors/dice-gambling-play-chance-cube-312621/
 
 
