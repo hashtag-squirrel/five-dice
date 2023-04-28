@@ -56,48 +56,7 @@ let diceArray = [
         state: 'unlocked',
     },
 ];
-let highscoresArray = [
-    {
-        name: 'Can',
-        score: 200,
-    },
-    {
-        name: 'You',
-        score: 180,
-    },
-    {
-        name: 'Beat',
-        score: 160,
-    },
-    {
-        name: 'These',
-        score: 140,
-    },
-    {
-        name: 'Scores',
-        score: 120,
-    },
-    {
-        name: 'That',
-        score: 100,
-    },
-    {
-        name: 'Are',
-        score: 80,
-    },
-    {
-        name: 'Hard',
-        score: 60,
-    },
-    {
-        name: 'Coded',
-        score: 40,
-    },
-    {
-        name: 'Here',
-        score: 20,
-    }
-];
+let highscoresArray;
 let totalScore;
 let numberOfRolls;
 let numberOfRounds;
@@ -107,10 +66,10 @@ let randomName;
 // Wait for the DOM to finish loading before running the game
 // Calling functions to get data from localStorage
 document.addEventListener('DOMContentLoaded', function() {
-    setHighscores();
     setTimeout(getPlayerName, 300);
     setTimeout(getHighscores, 300);
-    buildHighscoreTable();
+    setTimeout(buildHighscoreTable, 1000);
+    setTimeout(setHighscores, 1000);
     runGame();
 });
 
@@ -122,13 +81,13 @@ document.addEventListener('DOMContentLoaded', function() {
  */ 
 function runGame() {
     console.log("Running game...");
-    for (let i = 0; i < 13; i++) {
+    for (let i = 0; i < tableBody.children.length; i++) {
         tableBody.children[i].children[1].textContent = '';
     }
     totalScore = 0;
     totalScoreDisplay.textContent = '0';
     numberOfRolls = 3;
-    numberOfRounds = 13;
+    numberOfRounds = tableBody.children.length;
     displayHint(true, 'lockHint');
     updateRolls();
     enableRollBtn();
@@ -299,7 +258,6 @@ function calculateTotalScore(fieldScore) {
  */
 function toggleDice(event) {   
     console.log("Toggling dice...");
-    console.log(event);
     let clickedDice = event.srcElement;
     let diceId = clickedDice.id;
     let diceClassList = clickedDice.classList;   
@@ -668,12 +626,59 @@ function buildHighscoreTable() {
  * Gets highscores from localStorage
  */
 function getHighscores() {
-    JSON.parse(localStorage.getItem('highscores'));
+    console.log('Getting highscores from localStorage...');
+    if (JSON.parse(localStorage.getItem('highscores'))) {
+        highscoresArray = JSON.parse(localStorage.getItem('highscores'));
+    } else {
+        highscoresArray = [
+            {
+                name: 'Can',
+                score: 200,
+            },
+            {
+                name: 'You',
+                score: 180,
+            },
+            {
+                name: 'Beat',
+                score: 160,
+            },
+            {
+                name: 'These',
+                score: 140,
+            },
+            {
+                name: 'Scores',
+                score: 120,
+            },
+            {
+                name: 'That',
+                score: 100,
+            },
+            {
+                name: 'Are',
+                score: 80,
+            },
+            {
+                name: 'Hard',
+                score: 60,
+            },
+            {
+                name: 'Coded',
+                score: 40,
+            },
+            {
+                name: 'Here',
+                score: 20,
+            }
+        ];
+    }
 }
 
 /**
  * Saves highscores in localStorage
  */
 function setHighscores() {
+    console.log('Setting highscores in localStorage...');
     localStorage.setItem('highscores', JSON.stringify(highscoresArray));
 }
