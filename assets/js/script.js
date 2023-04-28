@@ -70,6 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(getHighscores, 300);
     setTimeout(buildHighscoreTable, 1000);
     setTimeout(setHighscores, 1000);
+    tableBody.addEventListener('click', function(event) {endTurn(event);});
+    allDice.addEventListener('click', function(event) {toggleDice(event);});
+    rulesBtn.addEventListener('click', displayRules);
+    highscoresBtn.addEventListener('click', displayHighscores);
+    playerName = playerNameDisplay.addEventListener('click', changePlayerName);
     runGame();
 });
 
@@ -91,11 +96,6 @@ function runGame() {
     displayHint(true, 'lockHint');
     updateRolls();
     enableRollBtn();
-    tableBody.addEventListener('click', function(event) {endTurn(event);});
-    allDice.addEventListener('click', function(event) {toggleDice(event);});
-    rulesBtn.addEventListener('click', displayRules);
-    highscoresBtn.addEventListener('click', displayHighscores);
-    playerName = playerNameDisplay.addEventListener('click', changePlayerName);
 }
 
 /**
@@ -111,7 +111,7 @@ function endGame() {
         } else {
             alert("See you next time!");
         }
-    }, 1000);
+    }, 300);
     addHighscore();
 }
 
