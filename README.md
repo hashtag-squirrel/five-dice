@@ -16,13 +16,13 @@ To improve your score, you can decide to roll only specific dice on subsequent r
   - [UX](#ux)
     - [User Stories](#user-stories)
     - [Visual Design](#visual-design)
-      - [__Wireframes__](#wireframes)
+      - [Wireframes](#wireframes)
         - [Desktop](#desktop)
         - [Tablet](#tablet)
         - [Phone](#phone)
-      - [__Colors__](#colors)
-      - [__Fonts__](#fonts)
-      - [__Images__](#images)
+      - [Colors](#colors)
+      - [Fonts](#fonts)
+      - [Images](#images)
   - [Features](#features)
     - [Existing Features](#existing-features)
     - [Features Left to Implement](#features-left-to-implement)
@@ -33,17 +33,17 @@ To improve your score, you can decide to roll only specific dice on subsequent r
     - [Other Tools](#other-tools)
   - [Testing](#testing)
     - [Methods](#methods)
-      - [__Validator Testing__](#validator-testing)
-      - [__Lighthouse Testing__](#lighthouse-testing)
-      - [__General Testing__](#general-testing)
+      - [Validator Testing](#validator-testing)
+      - [Lighthouse Testing](#lighthouse-testing)
+      - [General Testing](#general-testing)
     - [Bugs](#bugs)
-      - [__Known Bugs__](#known-bugs)
-      - [__Fixed Bugs__](#fixed-bugs)
+      - [Known Bugs](#known-bugs)
+      - [Fixed Bugs](#fixed-bugs)
   - [Deployment](#deployment)
   - [Credits](#credits)
     - [Content](#content)
     - [Media](#media)
-      - [__Images__](#images-1)
+      - [Images](#images-1)
 
 
 ----
@@ -80,7 +80,7 @@ To improve your score, you can decide to roll only specific dice on subsequent r
 
 ### Visual Design
 
-#### __Wireframes__
+#### Wireframes
 
 Wireframes were created at the beginning of the design process using Balsamiq for Desktop, Tablets (horizontal and vertical orientation), and Smartphones (vertical orientation). Some design elements were changed in the finished product. 
 
@@ -98,14 +98,14 @@ For smaller screens, the elements will be aligned vertically, so the elements ar
 ##### Phone
 ![5DICE Phone Wireframe](assets/images/readme/5dice-wireframe-phone.png)
 
-#### __Colors__
+#### Colors
 
 The color palette was chosen using [Colormind.io](http://colormind.io/).
 I chose a calm color palette, again with the goal of not distracting too much from the game itself. 
 
 ![Color Palette](assets/images/readme/five-dice-color-palette.png)
 
-#### __Fonts__
+#### Fonts
 
 At the beginning of the design process, I chose the fonts Roboto and Amatic SC (both from [Google Fonts](https://fonts.google.com/)). 
 
@@ -114,7 +114,7 @@ I wanted to have a font that had a handwritten style for the scoresheet, to make
 I quickly decided to use the same font across the whole site (apart from the logo), since it looked too busy with two different fonts. 
 I also received the feedback, that Amatic SC was too thin and hard to read, so I switched to Kalam, also imported from [Google Fonts](https://fonts.google.com/).
 
-#### __Images__
+#### Images
 
 I wanted to keep the site as minimalistic as possible since the game itself has very few elements as well. I chose a very simple dice image to display the five dice in the game area and used the same dice to create the logo using [Canva](https://www.canva.com/).
 
@@ -262,7 +262,7 @@ No Frameworks or Libraries were used in this project
 
 ### Methods
 
-#### __Validator Testing__
+#### Validator Testing
 
 - HTML
     - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fhashtag-squirrel.github.io%2Ffive-dice%2F)
@@ -278,7 +278,7 @@ No Frameworks or Libraries were used in this project
     - One warning was shown:
       - 'async functions' is only available in ES8 (use 'esversion: 8').
 
-#### __Lighthouse Testing__ 
+#### Lighthouse Testing 
 
 The site was tested using the Chrome Dev Tools Lighthouse test. 
 
@@ -288,7 +288,7 @@ Here are the results for
 - Mobile
 ![Lighthouse Results](assets/images/readme/five-dice-lighthouse-mobile.png)
 
-#### __General Testing__
+#### General Testing
 - __As a first-time visitor, I want to be able to play a game from start to finish,  which includes the functionality listed below as MVP__
 
 |          **Feature tested**         | **How it was tested**                                                                                                                        | **Test result** |                                                                              **Comments**                                                                             |
@@ -357,10 +357,10 @@ Here are the results for
 
 ### Bugs
 
-#### __Known Bugs__
+#### Known Bugs
 At the point of deployment, there were no known, unfixed bugs. 
 
-#### __Fixed Bugs__
+#### Fixed Bugs
 
 During development, the following bugs were identified and fixed:
 - After finishing a game and starting a new one, the total score still displays the last total score
@@ -397,7 +397,7 @@ The live link can be found here: https://hashtag-squirrel.github.io/five-dice/
 
 ### Media
 
-#### __Images__
+#### Images
 - Dice with shadow (used for logo):
   - https://pixabay.com/vectors/one-dice-eyes-gamble-luck-chance-310338/
   - https://pixabay.com/vectors/two-dice-eyes-gamble-luck-chance-310337/
