@@ -216,7 +216,7 @@ Like the Rules section, the Highscores section also has a button to take them ba
 
 - __Additional Features__
 
-    There were a couple of features added to the MVP because there was enough time. Mostly, they were chosen by how much impact they had on the User Experience. 
+    Because of good time and priority management in the beginning, I was able to add a couple of additional features to the game.
 
     The additional features were:
     - The changing of the player name
@@ -255,8 +255,13 @@ No Frameworks or Libraries were used in this project
 - [Random User Generator API](https://randomuser.me/)
 
 ### Other Tools
-- [Mockup Generator](https://techsini.com/multi-mockup/index.php)
-- [Balsamiq](https://balsamiq.com/)
+- [Mockup Generator](https://techsini.com/multi-mockup/index.php) for the responsive mockup
+- [Balsamiq](https://balsamiq.com/) for the wireframes
+- [Google Fonts](https://fonts.google.com/) for the fonts
+- [Canva](https://www.canva.com/) for the logo design
+- [Visual Studio Code](https://code.visualstudio.com/) as an IDE
+- [GitHub & GitHub Desktop](https://github.com/) to host the code
+- [Git](https://git-scm.com/) as version control 
 
 ## Testing 
 
@@ -390,7 +395,7 @@ The live link can be found here: https://hashtag-squirrel.github.io/five-dice/
 
 ### Content 
 
-- Articles referred to in-depth: 
+- Documentation and tutorials referred to in-depth: 
     - [Fetch API Documentation](https://www.w3schools.com/jsref/api_fetch.asp)
     - [localStorage Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
     - [Set and Get objects/array in localStorage](https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage)
